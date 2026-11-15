@@ -33,7 +33,7 @@ PAGE_FAVICON_SVG = (
 # CONFIGURACIÓN DE PÁGINA — STOCK&YA! (HIVIMAR S.A.)
 # ==============================================================================
 st.set_page_config(
-    page_title="STOCK&YA! | Inteligencia y Consolidación de Inventarios - HIVIMAR S.A.",
+    page_title="STOCK&YA! | Inteligencia Gerencial de Inventarios - HIVIMAR S.A.",
     page_icon=PAGE_FAVICON_SVG,
     layout="wide",
     initial_sidebar_state="expanded",
@@ -42,21 +42,6 @@ st.set_page_config(
 # ==============================================================================
 # PALETA DE IDENTIDAD OSCURA DE ALTO CONTRASTE + ACENTOS VIBRANTES
 # ==============================================================================
-PALETTE = {
-    "bg_dark": "#061121",
-    "card_dark": "#0D1E36",
-    "sidebar_dark": "#050E1D",
-    "white": "#FFFFFF",
-    "text_soft": "#CBD5E1",
-    "electric_blue": "#0057FF",
-    "deep_blue": "#06193E",
-    "cyan": "#00C8FF",
-    "cyan_bright": "#00E5FF",
-    "red": "#FF3B5C",
-    "red_deep": "#E60026",
-    "border_cyan": "rgba(0, 229, 255, 0.28)",
-}
-
 CORPORATE_CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -77,7 +62,7 @@ html, body, [class*="css"] {
     color: #FFFFFF;
 }
 
-/* Fondo general Oscuro Profundo para máximo contraste con letras blancas y colores vibrantes */
+/* Fondo general Oscuro Profundo para máximo contraste */
 .stApp,
 [data-testid="stAppViewContainer"],
 [data-testid="stMain"],
@@ -87,6 +72,12 @@ section.main {
         radial-gradient(circle at 8% 95%, rgba(0, 87, 255, 0.14) 0%, transparent 42%),
         linear-gradient(180deg, #061121 0%, #08172E 55%, #050E1D 100%) !important;
     color: #FFFFFF !important;
+}
+
+/* Espacio superior seguro para que el encabezado fijo nunca tape contenido */
+.block-container {
+    padding-top: 2.6rem !important;
+    padding-bottom: 2.5rem !important;
 }
 
 /* Diálogos / Modales en oscuro */
@@ -145,7 +136,7 @@ section[data-testid="stSidebar"] .stButton > button {
     box-shadow: 0 4px 16px rgba(0, 180, 216, 0.35) !important;
 }
 
-/* Legibilidad garantizada para todos los labels, radios, selectboxes e inputs en modo oscuro */
+/* Legibilidad garantizada para todos los widgets en modo oscuro */
 [data-testid="stMain"] [data-testid="stWidgetLabel"] p,
 [data-testid="stMain"] [data-testid="stWidgetLabel"] label,
 [data-testid="stMain"] [data-testid="stRadio"] label p,
@@ -186,7 +177,7 @@ ul[data-baseweb="menu"] li:hover {
     background-color: #0D1E36 !important;
     border: 1.5px dashed #00E5FF !important;
     border-radius: 12px !important;
-    padding: 16px !important;
+    padding: 14px !important;
 }
 [data-testid="stFileUploader"] section:hover {
     background-color: #122847 !important;
@@ -318,7 +309,7 @@ ul[data-baseweb="menu"] li:hover {
     margin-bottom: 0.35rem;
 }
 .kpi-value {
-    font-size: 1.75rem;
+    font-size: 1.72rem;
     font-weight: 800;
     color: #FFFFFF;
     line-height: 1.15;
@@ -338,8 +329,8 @@ ul[data-baseweb="menu"] li:hover {
     background: linear-gradient(115deg, #051638 0%, #0057FF 56%, #00A8E8 100%);
     border: 1.5px solid #00E5FF;
     border-radius: 18px;
-    padding: 1.45rem 2rem;
-    margin-bottom: 1.25rem;
+    padding: 1.35rem 1.85rem;
+    margin-bottom: 1.15rem;
     box-shadow: 0 12px 30px rgba(0, 87, 255, 0.32);
     position: relative;
     overflow: hidden;
@@ -354,18 +345,17 @@ ul[data-baseweb="menu"] li:hover {
     background: #FF3B5C;
 }
 
-/* Alerta ¡AGUANTA! en Oscuro con Acento Rojo Coral */
-.aguanta-box {
-    background: linear-gradient(135deg, #1F0B16 0%, #2D0F20 100%);
-    border: 1.5px solid #FF3B5C;
-    border-left: 8px solid #FF3B5C;
-    border-radius: 14px;
-    padding: 1.15rem 1.4rem;
-    margin: 0.85rem 0 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 8px 24px rgba(255, 59, 92, 0.22);
+/* Tarjeta de Acción Gerencial */
+.exec-advice-card {
+    background: linear-gradient(135deg, #0B192E 0%, #102542 100%);
+    border: 1px solid rgba(0, 229, 255, 0.32);
+    border-left: 5px solid #00E5FF;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.85rem;
+}
+.exec-advice-card.red-accent {
+    border-left-color: #FF3B5C;
 }
 
 /* Botones principales */
@@ -484,9 +474,9 @@ SVG_ICONS = {
     "audit": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7h6l-3-7z"/><path d="M19 7l-3 7h6l-3-7z"/><line x1="8" y1="21" x2="16" y2="21"/></svg>""",
     "ranking": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>""",
     "trends": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>""",
+    "executive": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>""",
     "ai": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>""",
     "table": """<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>""",
-    "alert": """<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FF3B5C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>""",
 }
 
 
@@ -501,7 +491,7 @@ def apply_dark_plotly_layout(fig, title: str = "", height: int = 380, xaxis_titl
         xaxis_title=xaxis_title,
         yaxis_title=yaxis_title,
         showlegend=showlegend,
-        margin=dict(l=20, r=30, t=52, b=24),
+        margin=dict(l=20, r=35, t=52, b=28),
         xaxis=dict(gridcolor="rgba(148, 163, 184, 0.14)", zerolinecolor="rgba(148, 163, 184, 0.25)"),
         yaxis=dict(gridcolor="rgba(148, 163, 184, 0.14)", zerolinecolor="rgba(148, 163, 184, 0.25)"),
     )
@@ -724,8 +714,8 @@ def render_dynamic_loader_animation(sector_key: str, sector_label: str, analyzed
 
     return f"""
     <div style="background: linear-gradient(135deg, #06193E 0%, #0057FF 100%);
-                border: 2px solid #00E5FF; border-radius: 16px; padding: 1.4rem 1.8rem;
-                margin: 1rem 0; text-align: center; box-shadow: 0 10px 28px rgba(0,87,255,0.35);">
+                border: 2px solid #00E5FF; border-radius: 16px; padding: 1.2rem 1.6rem;
+                margin: 0.75rem 0; text-align: center; box-shadow: 0 10px 28px rgba(0,87,255,0.35);">
       <style>
         @keyframes winkPhase {{
           0%, 100% {{ opacity: 1; transform: scale(1); }}
@@ -761,24 +751,24 @@ def render_dynamic_loader_animation(sector_key: str, sector_label: str, analyzed
         .track-line {{ stroke-dasharray: 12 8; animation: dashTrack 0.4s infinite linear; }}
       </style>
 
-      <div style="font-size: 1.32rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.04em; margin-bottom: 0.3rem;">
-        DAME CHANCE QUE ESTOY CARGANDO...
+      <div style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.04em; margin-bottom: 0.25rem;">
+        CONSOLIDANDO Y AUDITANDO INVENTARIOS...
       </div>
-      <div style="font-size: 0.86rem; color: #E0F2FE; margin-bottom: 0.75rem;">
+      <div style="font-size: 0.85rem; color: #E0F2FE; margin-bottom: 0.65rem;">
         {files_caption}Rubro identificado automáticamente: <strong style="color:#00E5FF;">{sector_label}</strong>
       </div>
 
-      <svg width="100%" height="74" viewBox="0 0 420 74" style="max-width: 520px; overflow: visible;">
+      <svg width="100%" height="68" viewBox="0 0 420 68" style="max-width: 500px; overflow: visible;">
         <g class="wink-group">
-          <circle cx="210" cy="36" r="26" fill="#06193E" stroke="#00E5FF" stroke-width="3"/>
-          <circle cx="201" cy="30" r="3.5" fill="#FFFFFF"/>
-          <path d="M 215 30 Q 221 25 226 30" stroke="#00E5FF" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-          <path d="M 198 43 Q 210 53 222 43" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="210" cy="34" r="24" fill="#06193E" stroke="#00E5FF" stroke-width="3"/>
+          <circle cx="201" cy="28" r="3.5" fill="#FFFFFF"/>
+          <path d="M 215 28 Q 221 23 226 28" stroke="#00E5FF" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+          <path d="M 198 41 Q 210 51 222 41" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"/>
         </g>
 
         <g class="track-group">
-          <line x1="15" y1="58" x2="405" y2="58" stroke="#00E5FF" stroke-width="3" stroke-linecap="round"/>
-          <line class="track-line" x1="15" y1="64" x2="405" y2="64" stroke="#FF3B5C" stroke-width="2.5"/>
+          <line x1="15" y1="54" x2="405" y2="54" stroke="#00E5FF" stroke-width="3" stroke-linecap="round"/>
+          <line class="track-line" x1="15" y1="60" x2="405" y2="60" stroke="#FF3B5C" stroke-width="2.5"/>
           <g class="roller-1">{chosen_svg}</g>
           <g class="roller-2">{chosen_svg}</g>
         </g>
@@ -808,7 +798,6 @@ def sanitize_label(label: str, fallback: str = "FUENTE") -> str:
 
 
 def parse_numeric_series(series: pd.Series) -> pd.Series:
-    """Convierte columnas numéricas o textos con formato de miles/moneda a float sin errores."""
     if pd.api.types.is_numeric_dtype(series):
         return series.fillna(0.0).astype(float)
     cleaned = (
@@ -823,7 +812,8 @@ def parse_numeric_series(series: pd.Series) -> pd.Series:
 def derive_smart_source_label(filename: str, sheet_name: str, fallback: str) -> str:
     generic_sheets = {
         "hoja1", "hoja2", "hoja3", "sheet1", "sheet2", "sheet3",
-        "datos", "datos_csv", "inventario", "reporte", "export", "tabla1", "base"
+        "datos", "datos_csv", "inventario", "reporte", "export", "tabla1", "base",
+        "consolidar todas las pestanas"
     }
     norm_sheet = normalize_text(sheet_name)
     base_file = filename.rsplit(".", 1)[0] if filename else ""
@@ -839,10 +829,6 @@ def derive_smart_source_label(filename: str, sheet_name: str, fallback: str) -> 
 
 
 def promote_real_header_row(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Detecta automáticamente si un reporte ERP (SAP, HIVIPRO, Oracle, Excel mensual)
-    tiene filas de título o metadatos arriba antes de los encabezados reales.
-    """
     if df is None or df.empty:
         return df
 
@@ -900,7 +886,6 @@ def promote_real_header_row(df: pd.DataFrame) -> pd.DataFrame:
 
 @st.cache_data(show_spinner=False, ttl=1800)
 def parse_workbook_bytes(filename: str, raw_bytes: bytes) -> dict:
-    """Lee y cachea libros Excel o CSV para evitar reprocesamiento innecesario."""
     fname = filename.lower()
     if fname.endswith(".csv"):
         for enc in ["utf-8", "latin-1", "cp1252"]:
@@ -1033,10 +1018,6 @@ def auto_detect_schema(df: pd.DataFrame) -> dict:
 
 
 def consolidate_source(df: pd.DataFrame, schema: dict, source_label: str, default_line_tag: str = None) -> pd.DataFrame:
-    """
-    Agrupa materiales repetidos en distintas ubicaciones/líneas, normaliza códigos
-    para evitar incompatibilidades entre meses o líneas distintas, y conserva todas las métricas.
-    """
     work = df.copy()
     cod_col = schema.get("codigo")
     desc_col = schema.get("descripcion")
@@ -1143,7 +1124,6 @@ def consolidate_source(df: pd.DataFrame, schema: dict, source_label: str, defaul
 
 
 def merge_all_workbook_sheets(sheets_dict: dict) -> pd.DataFrame:
-    """Consolida todas las pestañas de un libro de Excel etiquetando cada línea/pestaña."""
     frames = []
     for s_name, s_df in sheets_dict.items():
         if s_df is not None and not s_df.empty:
@@ -1162,9 +1142,6 @@ def reconcile_two_sources(
     name_b: str,
     operation_mode: str = "consolidacion",
 ) -> pd.DataFrame:
-    """
-    Cruza y consolida ambas fuentes (2 meses distintos, 2 líneas de producto o Lógico vs Físico).
-    """
     merged = pd.merge(df_a, df_b, on="CODIGO", how="outer", suffixes=("_A", "_B"))
 
     desc_a = merged.get("DESCRIPCION_A", pd.Series(index=merged.index, dtype=str))
@@ -1255,6 +1232,101 @@ def reconcile_two_sources(
 
 
 # ==============================================================================
+# MOTOR GERENCIAL ABC + VALORIZACIÓN DE CAPITAL Y SALUD DE INVENTARIO
+# ==============================================================================
+def compute_managerial_abc_analysis(
+    df_reconciled: pd.DataFrame,
+    name_a: str,
+    name_b: str,
+    fallback_unit_cost: float = 15.0,
+) -> tuple:
+    """
+    Calcula la Matriz Gerencial ABC (Pareto 80/15/5), Valorización Económica ($ USD),
+    Capital Inmovilizado y el Índice Ejecutivo de Salud de Inventario (0-100 pts).
+    """
+    df = df_reconciled.copy()
+    col_a = f"STOCK_{name_a}"
+    col_b = f"STOCK_{name_b}"
+
+    price_cols = [c for c in df.columns if c.startswith("PRECIO_")]
+    if price_cols:
+        unit_cost = df[price_cols].mean(axis=1).replace(0, np.nan).fillna(fallback_unit_cost)
+        has_real_price = True
+    else:
+        unit_cost = pd.Series(fallback_unit_cost, index=df.index)
+        has_real_price = False
+
+    df["COSTO_UNIT_USD"] = unit_cost.round(2)
+    df["VALOR_CONSOLIDADO_USD"] = (df["STOCK_CONSOLIDADO"] * df["COSTO_UNIT_USD"]).round(2)
+    df["VALOR_FUENTE_B_USD"] = (df[col_b] * df["COSTO_UNIT_USD"]).round(2)
+    df["IMPACTO_DIFERENCIA_USD"] = (df["DIFERENCIA"].abs() * df["COSTO_UNIT_USD"]).round(2)
+
+    df = df.sort_values("VALOR_CONSOLIDADO_USD", ascending=False).reset_index(drop=True)
+    total_val = float(df["VALOR_CONSOLIDADO_USD"].sum())
+
+    if total_val > 0:
+        df["PARTICIPACION_VALOR_%"] = (df["VALOR_CONSOLIDADO_USD"] / total_val * 100.0).round(2)
+        df["ACUMULADO_PARETO_%"] = (df["VALOR_CONSOLIDADO_USD"].cumsum() / total_val * 100.0).round(2)
+    else:
+        df["PARTICIPACION_VALOR_%"] = 0.0
+        df["ACUMULADO_PARETO_%"] = 0.0
+
+    df["CLASE_ABC"] = np.where(
+        df["ACUMULADO_PARETO_%"] <= 80.0,
+        "A (Crítico 80%)",
+        np.where(df["ACUMULADO_PARETO_%"] <= 95.0, "B (Intermedio 15%)", "C (Cola 5%)"),
+    )
+
+    egr_cols = [c for c in df.columns if c.startswith("EGRESOS_")]
+    if egr_cols:
+        mov_units = df[egr_cols[0]]
+    else:
+        mov_units = (df[col_a] - df[col_b]).clip(lower=0.0)
+
+    def get_managerial_action(row, m_u):
+        is_abc_a = row["CLASE_ABC"].startswith("A")
+        has_diff = row["ESTADO_CUADRE"] != "Cuadrado"
+        if is_abc_a and has_diff:
+            return "[PRIORIDAD 1] Auditar Diferencia en SKU Clase A"
+        if is_abc_a and m_u == 0 and row[col_b] > 0:
+            return "[CAPITAL DETENIDO] Impulsar Venta / Liquidar Clase A"
+        if has_diff:
+            return "[CONTROL] Regularizar Ajuste de Inventario"
+        if m_u > 0:
+            return "[SALUDABLE] Rotación Activa y Cuadrado"
+        return "[MONITOREAR] Stock Estable Sin Egresos"
+
+    df["ACCION_GERENCIAL"] = [
+        get_managerial_action(row, m_u)
+        for (_, row), m_u in zip(df.iterrows(), mov_units)
+    ]
+
+    total_skus = len(df)
+    exact_rate = float((df["ESTADO_CUADRE"] == "Cuadrado").sum()) / max(total_skus, 1)
+    active_rate = float((mov_units > 0).sum()) / max(total_skus, 1)
+    abc_a_exact = float(
+        (df[df["CLASE_ABC"].str.startswith("A")]["ESTADO_CUADRE"] == "Cuadrado").sum()
+    ) / max(int(df["CLASE_ABC"].str.startswith("A").sum()), 1)
+
+    health_score = round((exact_rate * 45.0 + abc_a_exact * 35.0 + max(active_rate, 0.35) * 20.0), 1)
+    health_score = min(100.0, max(0.0, health_score))
+
+    summary_metrics = {
+        "has_real_price": has_real_price,
+        "total_val_usd": total_val,
+        "val_b_usd": float(df["VALOR_FUENTE_B_USD"].sum()),
+        "diff_val_usd": float(df["IMPACTO_DIFERENCIA_USD"].sum()),
+        "class_a_skus": int(df["CLASE_ABC"].str.startswith("A").sum()),
+        "class_a_usd": float(df[df["CLASE_ABC"].str.startswith("A")]["VALOR_CONSOLIDADO_USD"].sum()),
+        "immobilized_a_usd": float(
+            df[df["ACCION_GERENCIAL"].str.contains("CAPITAL DETENIDO")]["VALOR_FUENTE_B_USD"].sum()
+        ),
+        "health_score": health_score,
+    }
+    return df, summary_metrics
+
+
+# ==============================================================================
 # MOTOR DE INTELIGENCIA ARTIFICIAL PREDICTIVA VECTORIZADO (HASTA 12 MESES)
 # ==============================================================================
 MONTH_ORDER_MAP = {
@@ -1288,12 +1360,6 @@ def extract_period_sort_key(filename: str, fallback_idx: int) -> tuple:
 
 
 def run_ai_demand_forecast(monthly_records: list) -> tuple:
-    """
-    Motor predictivo 100% vectorizado en NumPy:
-    - Unifica descripciones por CODIGO para evitar ruptura de series entre meses.
-    - Combina Regresión Lineal Ponderada + Suavizado Exponencial Doble de Holt.
-    - Filtra picos atípicos (Winsorization) y calcula sugerido de compra + confianza IA.
-    """
     if not monthly_records:
         return pd.DataFrame(), pd.DataFrame()
 
@@ -1457,13 +1523,45 @@ def run_ai_demand_forecast(monthly_records: list) -> tuple:
 
 
 # ==============================================================================
-# EXPORTADOR MAESTRO EXCEL (&YA!) CON PALETA MEGAMAN X, GRÁFICOS NATIVOS
-# Y MODELO DE DATOS COMPATIBLE CON POWER BI
+# EXPORTADOR MAESTRO EXCEL (&YA!) — CERO SOLAPAMIENTO, ETIQUETAS DE PRODUCTO
+# Y VALORES VISIBLES EN CADA GRÁFICO + BASE POWER BI
 # ==============================================================================
-def style_excel_chart_megaman_x(chart, palette_hex_list: list):
-    """Aplica identidad visual Mega Man X (Azul Eléctrico, Cian, Rojo) a gráficos nativos Excel."""
+def configure_legible_bar_chart(
+    chart: BarChart,
+    title: str,
+    x_title: str,
+    y_title: str,
+    palette_hex_list: list,
+    width: float = 23.0,
+    height: float = 12.5,
+    show_values: bool = True,
+):
+    """
+    Garantiza que los ejes, nombres de productos (Código | Descripción),
+    leyenda y valores numéricos sean 100% legibles en Excel sin ocultarse ni cortarse.
+    """
     chart.style = 10
-    chart.legend.position = "b"
+    chart.title = title
+    chart.width = width
+    chart.height = height
+    chart.legend.position = "t"
+
+    # Forzar visibilidad de ambos ejes y posicionar etiquetas fuera de las barras
+    chart.x_axis.delete = False
+    chart.y_axis.delete = False
+    chart.x_axis.title = x_title
+    chart.y_axis.title = y_title
+    chart.y_axis.tickLblPos = "low"
+    chart.x_axis.tickLblPos = "low"
+    chart.y_axis.majorTickMark = "out"
+    chart.x_axis.majorTickMark = "out"
+
+    if show_values:
+        chart.dataLabels = DataLabelList()
+        chart.dataLabels.showVal = True
+        chart.dataLabels.showSerName = False
+        chart.dataLabels.showCatName = False
+
     for idx, series in enumerate(chart.series):
         color_hex = palette_hex_list[idx % len(palette_hex_list)]
         series.graphicalProperties.solidFill = color_hex
@@ -1477,13 +1575,14 @@ def build_master_excel_export(
     df_top_sales,
     df_no_move,
     df_ai,
+    df_abc,
     sector_label: str,
 ) -> bytes:
     wb = Workbook()
 
     HEX_BLUE = "0057FF"
     HEX_DEEP = "06193E"
-    HEX_CYAN = "00C8FF"
+    HEX_CYAN = "00B4D8"
     HEX_RED = "E60026"
     HEX_WHITE = "FFFFFF"
     HEX_ICE = "F0F7FF"
@@ -1509,12 +1608,15 @@ def build_master_excel_export(
         bottom=Side(style="thin", color="BFDBFE"),
     )
 
+    # ==========================================================================
+    # HOJA 1: RESUMEN Y GRÁFICOS (DISEÑO DE REJILLA ESPACIADA — CERO SOLAPAMIENTO)
+    # ==========================================================================
     ws_res = wb.active
     ws_res.title = "1. Resumen y Gráficos"
     ws_res.sheet_properties.tabColor = HEX_BLUE
     ws_res.views.sheetView[0].showGridLines = True
 
-    ws_res.merge_cells("A1:K1")
+    ws_res.merge_cells("A1:R1")
     ws_res["A1"] = "STOCK&YA! — PANEL EJECUTIVO DE CONSOLIDACIÓN Y AUDITORÍA (HIVIMAR S.A.)"
     ws_res["A1"].fill = fill_deep
     ws_res["A1"].font = font_title
@@ -1522,10 +1624,10 @@ def build_master_excel_export(
     ws_res.row_dimensions[1].height = 32
 
     ws_res["A2"] = f"Fecha de emisión: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
-    ws_res["E2"] = f"Rubro detectado: {sector_label}"
+    ws_res["D2"] = f"Rubro detectado: {sector_label}"
     ws_res["A3"] = "Autoría: Derechos de autor reservados por John Aarón Domínguez Jara 01.593.321"
     ws_res["A2"].font = font_bold
-    ws_res["E2"].font = font_bold
+    ws_res["D2"].font = font_bold
     ws_res["A3"].font = Font(name="Calibri", size=9, italic=True, color="475569")
 
     if df_reconciled is not None and not df_reconciled.empty:
@@ -1542,6 +1644,7 @@ def build_master_excel_export(
         tot_cons = float(df_reconciled["STOCK_CONSOLIDADO"].sum())
         net_diff = tot_b - tot_a
 
+        # BLOQUE IZQUIERDO SUPERIOR (A5:B15): KPIs
         ws_res.cell(row=5, column=1, value="INDICADOR EJECUTIVO HIVIMAR").fill = fill_blue
         ws_res.cell(row=5, column=1).font = font_header
         ws_res.cell(row=5, column=2, value="VALOR").fill = fill_blue
@@ -1559,19 +1662,18 @@ def build_master_excel_export(
             ("Inventario Consolidado Total (Suma)", tot_cons),
             (f"Diferencia Neta ({name_b} - {name_a})", net_diff),
         ]
-        r_cur = 6
-        for k_name, k_val in kpis:
-            c1 = ws_res.cell(row=r_cur, column=1, value=k_name)
-            c2 = ws_res.cell(row=r_cur, column=2, value=k_val)
+        for idx_k, (k_name, k_val) in enumerate(kpis, start=6):
+            c1 = ws_res.cell(row=idx_k, column=1, value=k_name)
+            c2 = ws_res.cell(row=idx_k, column=2, value=k_val)
             c1.font = font_bold
             c2.font = font_regular
             c1.border = thin_border
             c2.border = thin_border
-            if r_cur % 2 == 0:
+            if idx_k % 2 == 0:
                 c1.fill = fill_ice
                 c2.fill = fill_ice
-            r_cur += 1
 
+        # BLOQUE IZQUIERDO MEDIO (A17:B20): Tabla Comparativo Volumen
         ws_res.cell(row=17, column=1, value="FUENTE / PERÍODO").fill = fill_blue
         ws_res.cell(row=17, column=1).font = font_header
         ws_res.cell(row=17, column=2, value="UNIDADES TOTALES").fill = fill_blue
@@ -1590,6 +1692,7 @@ def build_master_excel_export(
             ca.border = thin_border
             cb.border = thin_border
 
+        # BLOQUE IZQUIERDO INFERIOR (A22:B27): Estado del Catálogo
         ws_res.cell(row=22, column=1, value="ESTADO DEL CATÁLOGO").fill = fill_red
         ws_res.cell(row=22, column=1).font = font_header
         ws_res.cell(row=22, column=2, value="CANTIDAD SKUs").fill = fill_red
@@ -1606,20 +1709,26 @@ def build_master_excel_export(
             c_st.border = thin_border
             c_qt.border = thin_border
 
+        # GRÁFICO 1 (CELDA D5 -> Ocupa D5:J23, sin tocar nada más)
         chart_vol = BarChart()
         chart_vol.type = "col"
-        chart_vol.title = f"Comparativo de Unidades: {name_a} vs {name_b}"
-        chart_vol.y_axis.title = "Unidades"
-        chart_vol.x_axis.title = "Origen / Período"
         data_ref_vol = Reference(ws_res, min_col=2, min_row=17, max_row=20)
         cats_ref_vol = Reference(ws_res, min_col=1, min_row=18, max_row=20)
         chart_vol.add_data(data_ref_vol, titles_from_data=True)
         chart_vol.set_categories(cats_ref_vol)
-        chart_vol.width = 15
-        chart_vol.height = 9.5
-        style_excel_chart_megaman_x(chart_vol, [HEX_BLUE, HEX_CYAN, HEX_RED])
+        configure_legible_bar_chart(
+            chart_vol,
+            title=f"Comparativo de Unidades: {name_a} vs {name_b} vs Consolidado",
+            x_title="Origen / Período",
+            y_title="Unidades",
+            palette_hex_list=[HEX_BLUE, HEX_CYAN, HEX_RED],
+            width=16.5,
+            height=10.5,
+            show_values=True,
+        )
         ws_res.add_chart(chart_vol, "D5")
 
+        # GRÁFICO 2 (CELDA L5 -> Ocupa L5:R23, completamente separado a la derecha)
         chart_pie = DoughnutChart()
         chart_pie.title = "Composición de Auditoría y Consolidación (SKUs)"
         max_st_row = 22 + len(status_counts)
@@ -1627,13 +1736,19 @@ def build_master_excel_export(
         cats_ref_st = Reference(ws_res, min_col=1, min_row=23, max_row=max_st_row)
         chart_pie.add_data(data_ref_st, titles_from_data=True)
         chart_pie.set_categories(cats_ref_st)
+        chart_pie.legend.position = "b"
         chart_pie.dataLabels = DataLabelList()
         chart_pie.dataLabels.showPercent = True
-        chart_pie.width = 15
-        chart_pie.height = 9.5
-        style_excel_chart_megaman_x(chart_pie, [HEX_CYAN, HEX_BLUE, HEX_RED, HEX_DEEP])
-        ws_res.add_chart(chart_pie, "D21")
+        chart_pie.dataLabels.showVal = True
+        chart_pie.dataLabels.showCatName = True
+        chart_pie.width = 16.5
+        chart_pie.height = 10.5
+        for idx, series in enumerate(chart_pie.series):
+            c_hex = [HEX_CYAN, HEX_BLUE, HEX_RED, HEX_DEEP][idx % 4]
+            series.graphicalProperties.solidFill = c_hex
+        ws_res.add_chart(chart_pie, "L5")
 
+        # FILA 28 EN ADELANTE: TABLA DE LÍNEAS (A28:D40) + GRÁFICO HORIZONTAL (F28:R48)
         if "LINEA_CATEGORIA" in df_reconciled.columns:
             line_summary = (
                 df_reconciled.groupby("LINEA_CATEGORIA", as_index=False)[[col_a, col_b, "STOCK_CONSOLIDADO"]]
@@ -1641,52 +1756,66 @@ def build_master_excel_export(
                 .sort_values("STOCK_CONSOLIDADO", ascending=False)
                 .head(12)
             )
-            ws_res.cell(row=5, column=11, value="LÍNEA / CATEGORÍA").fill = fill_blue
-            ws_res.cell(row=5, column=11).font = font_header
-            ws_res.cell(row=5, column=12, value=f"STOCK {name_a}").fill = fill_blue
-            ws_res.cell(row=5, column=12).font = font_header
-            ws_res.cell(row=5, column=13, value=f"STOCK {name_b}").fill = fill_cyan
-            ws_res.cell(row=5, column=13).font = Font(name="Calibri", size=11, bold=True, color=HEX_DEEP)
-            ws_res.cell(row=5, column=14, value="CONSOLIDADO").fill = fill_red
-            ws_res.cell(row=5, column=14).font = font_header
+            start_l_row = 28
+            ws_res.cell(row=start_l_row, column=1, value="LÍNEA / CATEGORÍA").fill = fill_deep
+            ws_res.cell(row=start_l_row, column=1).font = font_header
+            ws_res.cell(row=start_l_row, column=2, value=f"STOCK {name_a}").fill = fill_blue
+            ws_res.cell(row=start_l_row, column=2).font = font_header
+            ws_res.cell(row=start_l_row, column=3, value=f"STOCK {name_b}").fill = fill_cyan
+            ws_res.cell(row=start_l_row, column=3).font = font_header
+            ws_res.cell(row=start_l_row, column=4, value="CONSOLIDADO").fill = fill_red
+            ws_res.cell(row=start_l_row, column=4).font = font_header
 
-            for idx_l, row_l in enumerate(line_summary.itertuples(index=False), start=6):
-                ws_res.cell(row=idx_l, column=11, value=str(row_l[0])).border = thin_border
-                ws_res.cell(row=idx_l, column=12, value=float(row_l[1])).border = thin_border
-                ws_res.cell(row=idx_l, column=13, value=float(row_l[2])).border = thin_border
-                ws_res.cell(row=idx_l, column=14, value=float(row_l[3])).border = thin_border
+            for idx_l, row_l in enumerate(line_summary.itertuples(index=False), start=start_l_row + 1):
+                c_cat = ws_res.cell(row=idx_l, column=1, value=str(row_l[0]))
+                c_va = ws_res.cell(row=idx_l, column=2, value=float(row_l[1]))
+                c_vb = ws_res.cell(row=idx_l, column=3, value=float(row_l[2]))
+                c_vc = ws_res.cell(row=idx_l, column=4, value=float(row_l[3]))
+                c_cat.font = font_bold
+                for cell_i in (c_cat, c_va, c_vb, c_vc):
+                    cell_i.border = thin_border
+                    if idx_l % 2 == 0:
+                        cell_i.fill = fill_ice
 
             chart_lines = BarChart()
             chart_lines.type = "bar"
             chart_lines.grouping = "clustered"
-            chart_lines.title = f"Consolidado por Línea / Categoría ({name_a} vs {name_b})"
-            max_l_row = 5 + len(line_summary)
-            d_ref_l = Reference(ws_res, min_col=12, max_col=13, min_row=5, max_row=max_l_row)
-            c_ref_l = Reference(ws_res, min_col=11, min_row=6, max_row=max_l_row)
+            max_l_row = start_l_row + len(line_summary)
+            d_ref_l = Reference(ws_res, min_col=2, max_col=3, min_row=start_l_row, max_row=max_l_row)
+            c_ref_l = Reference(ws_res, min_col=1, min_row=start_l_row + 1, max_row=max_l_row)
             chart_lines.add_data(d_ref_l, titles_from_data=True)
             chart_lines.set_categories(c_ref_l)
-            chart_lines.width = 18
-            chart_lines.height = 10
-            style_excel_chart_megaman_x(chart_lines, [HEX_BLUE, HEX_CYAN])
-            ws_res.add_chart(chart_lines, "K19")
+            configure_legible_bar_chart(
+                chart_lines,
+                title=f"Detalle por Línea / Categoría ({name_a} vs {name_b})",
+                x_title="Unidades",
+                y_title="Línea / Categoría",
+                palette_hex_list=[HEX_BLUE, HEX_CYAN],
+                width=24.0,
+                height=12.0,
+                show_values=True,
+            )
+            ws_res.add_chart(chart_lines, f"F{start_l_row}")
 
     ws_res.column_dimensions["A"].width = 42
-    ws_res.column_dimensions["B"].width = 20
-    ws_res.column_dimensions["K"].width = 28
-    ws_res.column_dimensions["L"].width = 16
-    ws_res.column_dimensions["M"].width = 16
-    ws_res.column_dimensions["N"].width = 18
+    ws_res.column_dimensions["B"].width = 18
+    ws_res.column_dimensions["C"].width = 18
+    ws_res.column_dimensions["D"].width = 18
 
-    def write_df_sheet_with_chart(
+    # ==========================================================================
+    # FUNCIÓN GENÉRICA PARA HOJAS DE DETALLE CON TABLA + RESUMEN DE GRÁFICO LEGIBLE
+    # ==========================================================================
+    def write_df_sheet_with_legible_chart(
         sheet_title: str,
         tab_hex: str,
         df_data: pd.DataFrame,
-        chart_cfg: dict = None,
+        chart_spec: dict = None,
     ):
         ws = wb.create_sheet(title=sheet_title[:31])
         ws.sheet_properties.tabColor = tab_hex
         ws.freeze_panes = "A2"
 
+        # 1. Tabla principal de datos en columnas A..N
         for c_idx, col_name in enumerate(df_data.columns, start=1):
             cell = ws.cell(row=1, column=c_idx, value=str(col_name))
             cell.fill = fill_deep if c_idx <= 3 else fill_blue
@@ -1717,45 +1846,92 @@ def build_master_excel_export(
                 len(str(df_data.columns[col_idx - 1])),
                 int(df_data.iloc[:, col_idx - 1].astype(str).str.len().max()) if len(df_data) > 0 else 10,
             )
-            ws.column_dimensions[col_letter].width = min(max_len + 4, 44)
+            ws.column_dimensions[col_letter].width = min(max_len + 4, 42)
 
-        if chart_cfg and len(df_data) > 0:
-            max_chart_rows = min(len(df_data) + 1, 16)
-            anchor_col = get_column_letter(len(df_data.columns) + 2)
+        # 2. Cuadro Ejecutivo Top 15 + Gráfico Horizontal debajo del cuadro (cero solapamiento,
+        #    con Código + Descripción completa y valores numéricos visibles en cada barra)
+        if chart_spec and len(df_data) > 0:
+            sort_col = chart_spec["sort_col"]
+            ascending = chart_spec.get("ascending", False)
+            val_col_names = chart_spec["val_cols"]
+
+            df_top_chart = df_data.copy()
+            if chart_spec.get("abs_sort"):
+                df_top_chart = df_top_chart.reindex(
+                    df_top_chart[sort_col].abs().sort_values(ascending=ascending).index
+                ).head(15)
+            else:
+                df_top_chart = df_top_chart.sort_values(sort_col, ascending=ascending).head(15)
+
+            start_c = len(df_data.columns) + 2  # Columna separada con 1 columna vacía de margen
+            ws.cell(row=1, column=start_c, value="PRODUCTO (CÓDIGO | DESCRIPCIÓN)").fill = fill_deep
+            ws.cell(row=1, column=start_c).font = font_header
+            ws.cell(row=1, column=start_c).alignment = Alignment(horizontal="center", vertical="center")
+            ws.column_dimensions[get_column_letter(start_c)].width = 44
+
+            for v_i, v_name in enumerate(val_col_names, start=1):
+                c_hdr = ws.cell(row=1, column=start_c + v_i, value=str(v_name))
+                c_hdr.fill = fill_blue if v_i == 1 else (fill_cyan if v_i == 2 else fill_red)
+                c_hdr.font = font_header
+                c_hdr.alignment = Alignment(horizontal="center", vertical="center")
+                ws.column_dimensions[get_column_letter(start_c + v_i)].width = 18
+
+            for r_i, (_, row_item) in enumerate(df_top_chart.iterrows(), start=2):
+                cod_str = str(row_item.get("CODIGO", "")).strip()
+                desc_str = str(row_item.get("DESCRIPCION", "")).strip()
+                full_lbl = f"{cod_str} | {desc_str[:34]}" if cod_str else desc_str[:40]
+                c_lbl = ws.cell(row=r_i, column=start_c, value=full_lbl)
+                c_lbl.font = font_bold
+                c_lbl.border = thin_border
+                if r_i % 2 == 0:
+                    c_lbl.fill = fill_ice
+
+                for v_i, v_name in enumerate(val_col_names, start=1):
+                    val_num = float(row_item.get(v_name, 0.0))
+                    c_val = ws.cell(row=r_i, column=start_c + v_i, value=val_num)
+                    c_val.font = font_regular
+                    c_val.border = thin_border
+                    if r_i % 2 == 0:
+                        c_val.fill = fill_ice
+
+            max_r_chart = len(df_top_chart) + 1
             ch = BarChart()
-            ch.type = chart_cfg.get("type", "bar")
+            ch.type = "bar"
             ch.grouping = "clustered"
-            ch.title = chart_cfg.get("title", sheet_title)
-            val_cols = chart_cfg.get("val_cols", [])
-            cat_col = chart_cfg.get("cat_col", 2)
-            if val_cols:
-                for vc in val_cols:
-                    d_ref = Reference(ws, min_col=vc, min_row=1, max_row=max_chart_rows)
-                    ch.add_data(d_ref, titles_from_data=True)
-                c_ref = Reference(ws, min_col=cat_col, min_row=2, max_row=max_chart_rows)
-                ch.set_categories(c_ref)
-                ch.width = 18
-                ch.height = 11
-                style_excel_chart_megaman_x(ch, chart_cfg.get("colors", [HEX_BLUE, HEX_CYAN, HEX_RED]))
-                ws.add_chart(ch, f"{anchor_col}2")
+            d_ref = Reference(
+                ws,
+                min_col=start_c + 1,
+                max_col=start_c + len(val_col_names),
+                min_row=1,
+                max_row=max_r_chart,
+            )
+            c_ref = Reference(ws, min_col=start_c, min_row=2, max_row=max_r_chart)
+            ch.add_data(d_ref, titles_from_data=True)
+            ch.set_categories(c_ref)
+            configure_legible_bar_chart(
+                ch,
+                title=chart_spec["title"],
+                x_title=chart_spec.get("x_title", "Unidades"),
+                y_title="Código | Producto",
+                palette_hex_list=chart_spec.get("colors", [HEX_BLUE, HEX_CYAN, HEX_RED]),
+                width=24.0,
+                height=13.5,
+                show_values=True,
+            )
+            # Anclar el gráfico justo DEBAJO del cuadro resumen (fila 19) para que ambos se lean completos
+            ws.add_chart(ch, f"{get_column_letter(start_c)}19")
 
     if df_reconciled is not None and not df_reconciled.empty:
-        cols_rec = list(df_reconciled.columns)
-        idx_desc = cols_rec.index("DESCRIPCION") + 1
-        idx_sa = cols_rec.index(f"STOCK_{name_a}") + 1
-        idx_sb = cols_rec.index(f"STOCK_{name_b}") + 1
-        idx_diff = cols_rec.index("DIFERENCIA") + 1
-
-        write_df_sheet_with_chart(
+        write_df_sheet_with_legible_chart(
             "2. Inventario Consolidado",
             HEX_CYAN,
             df_reconciled,
-            chart_cfg={
-                "type": "bar",
-                "title": f"Top 15 Materiales: {name_a} vs {name_b}",
-                "val_cols": [idx_sa, idx_sb],
-                "cat_col": idx_desc,
-                "colors": [HEX_BLUE, HEX_CYAN],
+            chart_spec={
+                "title": f"Top 15 Productos por Stock Consolidado: {name_a} vs {name_b}",
+                "sort_col": "STOCK_CONSOLIDADO",
+                "val_cols": [f"STOCK_{name_a}", f"STOCK_{name_b}", "STOCK_CONSOLIDADO"],
+                "x_title": "Unidades",
+                "colors": [HEX_BLUE, HEX_CYAN, HEX_RED],
             },
         )
 
@@ -1764,73 +1940,78 @@ def build_master_excel_export(
             df_diff_only = df_diff_only.reindex(
                 df_diff_only["DIFERENCIA"].abs().sort_values(ascending=False).index
             )
-            write_df_sheet_with_chart(
+            write_df_sheet_with_legible_chart(
                 "3. Diferencias y Ajustes",
                 HEX_RED,
                 df_diff_only,
-                chart_cfg={
-                    "type": "bar",
-                    "title": "Top 15 Mayores Diferencias / Variaciones",
-                    "val_cols": [idx_diff],
-                    "cat_col": idx_desc,
-                    "colors": [HEX_RED],
+                chart_spec={
+                    "title": f"Top 15 Productos con Mayor Diferencia ({name_b} vs {name_a})",
+                    "sort_col": "DIFERENCIA",
+                    "abs_sort": True,
+                    "val_cols": [f"STOCK_{name_a}", f"STOCK_{name_b}", "DIFERENCIA"],
+                    "x_title": "Unidades",
+                    "colors": [HEX_BLUE, HEX_CYAN, HEX_RED],
                 },
             )
 
     if df_top_sales is not None and not df_top_sales.empty:
-        cols_top = list(df_top_sales.columns)
-        idx_d_top = cols_top.index("DESCRIPCION") + 1
-        idx_m_top = cols_top.index("UNIDADES_MOVIDAS") + 1
-        write_df_sheet_with_chart(
+        write_df_sheet_with_legible_chart(
             "4. Top 20 Mayor Rotación",
             HEX_BLUE,
             df_top_sales,
-            chart_cfg={
-                "type": "bar",
-                "title": "Top 15 Productos con Mayor Movimiento",
-                "val_cols": [idx_m_top],
-                "cat_col": idx_d_top,
+            chart_spec={
+                "title": "Top 15 Productos con Mayor Rotación / Salida",
+                "sort_col": "UNIDADES_MOVIDAS",
+                "val_cols": ["UNIDADES_MOVIDAS"],
+                "x_title": "Unidades Movidas",
                 "colors": [HEX_BLUE],
             },
         )
 
     if df_no_move is not None and not df_no_move.empty:
-        cols_nm = list(df_no_move.columns)
-        idx_d_nm = cols_nm.index("DESCRIPCION") + 1
-        idx_s_nm = cols_nm.index(f"STOCK_{name_b}") + 1
-        write_df_sheet_with_chart(
+        write_df_sheet_with_legible_chart(
             "5. Top 20 Sin Movimiento",
             HEX_RED,
             df_no_move,
-            chart_cfg={
-                "type": "bar",
-                "title": "Top 15 Productos Inmovilizados (Stock Estancado)",
-                "val_cols": [idx_s_nm],
-                "cat_col": idx_d_nm,
+            chart_spec={
+                "title": f"Top 15 Productos Inmovilizados (Stock Estancado en {name_b})",
+                "sort_col": f"STOCK_{name_b}",
+                "val_cols": [f"STOCK_{name_b}"],
+                "x_title": "Unidades Estancadas",
                 "colors": [HEX_RED],
             },
         )
 
+    if df_abc is not None and not df_abc.empty:
+        write_df_sheet_with_legible_chart(
+            "6. Matriz Gerencial ABC",
+            HEX_DEEP,
+            df_abc,
+            chart_spec={
+                "title": "Top 15 Productos Clase A por Valor Consolidado ($ USD)",
+                "sort_col": "VALOR_CONSOLIDADO_USD",
+                "val_cols": ["VALOR_CONSOLIDADO_USD"],
+                "x_title": "Valor en USD ($)",
+                "colors": [HEX_BLUE],
+            },
+        )
+
     if df_ai is not None and not df_ai.empty:
-        cols_ai = list(df_ai.columns)
-        idx_d_ai = cols_ai.index("DESCRIPCION") + 1
-        idx_act_ai = cols_ai.index("STOCK_ACTUAL") + 1
-        idx_exp_ai = cols_ai.index("EXPECTATIVA_VENTA_IA") + 1
-        write_df_sheet_with_chart(
-            "6. Proyección Demanda IA",
+        write_df_sheet_with_legible_chart(
+            "7. Proyección Demanda IA",
             HEX_CYAN,
             df_ai,
-            chart_cfg={
-                "type": "bar",
-                "title": "Stock Actual vs Expectativa de Venta Próximo Mes (IA)",
-                "val_cols": [idx_act_ai, idx_exp_ai],
-                "cat_col": idx_d_ai,
-                "colors": [HEX_BLUE, HEX_RED],
+            chart_spec={
+                "title": "Top 15 Productos: Stock Actual vs Expectativa Venta Próximo Mes (IA)",
+                "sort_col": "EXPECTATIVA_VENTA_IA",
+                "val_cols": ["STOCK_ACTUAL", "EXPECTATIVA_VENTA_IA", "SUGERIDO_COMPRA_IA"],
+                "x_title": "Unidades",
+                "colors": [HEX_BLUE, HEX_RED, HEX_CYAN],
             },
         )
 
     if df_reconciled is not None and not df_reconciled.empty:
-        ws_bi = wb.create_sheet(title="7. Base Power BI (Datos)")
+        ws_bi = wb.create_sheet(title="8. Base Power BI (Datos)")
         ws_bi.sheet_properties.tabColor = HEX_DEEP
 
         bi_df = pd.DataFrame({
@@ -1894,28 +2075,21 @@ def main():
 
     if "welcome_seen" not in st.session_state:
         st.session_state.welcome_seen = False
-    if "confirmed_load" not in st.session_state:
-        st.session_state.confirmed_load = False
-    if "confirmed_12m" not in st.session_state:
-        st.session_state.confirmed_12m = False
-    if "file_signature" not in st.session_state:
-        st.session_state.file_signature = ""
-    if "files12_signature" not in st.session_state:
-        st.session_state.files12_signature = ""
 
     @st.dialog("Bienvenido a STOCK&YA! — Guía Ejecutiva HIVIMAR S.A.", width="large")
     def show_interactive_guide():
         st.markdown(
             """
-            ### Plataforma de Consolidación e Inteligencia de Inventarios — **HIVIMAR S.A.**
-            Diseñada con interfaz oscura de alto contraste para unificar reportes de **SAP, Oracle, Odoo, Microsoft Dynamics, CSV o Google Sheets** sin errores de compatibilidad.
+            ### Plataforma de Consolidación e Inteligencia Gerencial — **HIVIMAR S.A.**
+            Diseñada para unificar reportes de **SAP, HIVIPRO, Oracle, Odoo, Excel, CSV o Google Sheets** sin errores de compatibilidad y con visualización gerencial inmediata.
 
-            #### Capacidades principales:
-            1. **Consolidación Universal (2 Meses, 2 Líneas o Lógico vs Físico):** Carga archivos de distintos meses (ej. **Agosto y Octubre**) o **líneas distintas**. El motor detecta automáticamente filas de encabezado, consolida ubicaciones múltiples y suma/compara sin conflictos.
-            2. **Top 20 Rotación y Capital Inmovilizado:** Visualiza los 20 productos de mayor salida y los 20 sin movimiento con porcentajes reales.
-            3. **Termómetro Creciente / Decreciente (%):** Analiza variaciones porcentuales por línea de producto y por SKU.
-            4. **Consolidado 12 Meses + IA Predictiva:** Carga hasta **12 archivos mensuales** para proyectar la demanda del próximo mes, sugerir compras y alertar quiebres de stock.
-            5. **Exportación Excel + Power BI (`&YA!`):** Descarga un libro de Excel con **gráficos nativos integrados**, pestañas claras y tabla estructurada lista para **Power BI**.
+            #### Módulos integrados:
+            1. **Consolidación Inteligente:** Carga tus dos fuentes (meses distintos, líneas distintas o Lógico vs Físico) y obtén el cruce, suma consolidada y detección de variaciones al instante.
+            2. **Matriz Gerencial ABC & Salud ($ USD):** Clasificación Pareto 80/15/5, valorización de capital inmovilizado e **Índice de Salud de Inventario (0-100 pts)**.
+            3. **Top 20 Rotación y Sin Movimiento:** Identifica los productos de mayor salida y los artículos estancados.
+            4. **Creciente y Decreciente (% Real):** Termómetro de variaciones porcentuales por línea y por SKU.
+            5. **Consolidado 12 Meses + IA:** Proyección de demanda del próximo mes y sugerido de compra automático.
+            6. **Exportación Excel + Power BI (`&YA!`):** Gráficos legibles con código, descripción y cantidades visibles, sin solapamientos y con tabla lista para **Power BI**.
             """
         )
         if st.button("Entendido, iniciar plataforma", type="primary", use_container_width=True):
@@ -1948,8 +2122,8 @@ def main():
         nav_option = st.radio(
             "MENÚ PRINCIPAL",
             [
-                "Inicio y Carga Inteligente",
-                "Consolidación y Cuadre",
+                "Consolidación Inteligente",
+                "Matriz Gerencial ABC & Salud",
                 "Top 20 Ventas y Sin Movimiento",
                 "Creciente y Decreciente (% Real)",
                 "Consolidado 12 Meses + IA",
@@ -1961,11 +2135,17 @@ def main():
         if st.button("Guía Ejecutiva de Uso", use_container_width=True):
             show_interactive_guide()
 
+        if st.session_state.get("df_reconciled") is not None:
+            if st.button("Limpiar / Cargar Nuevos Archivos", use_container_width=True):
+                for k in ["df_reconciled", "name_a", "name_b", "last_animated_sig", "df_abc"]:
+                    st.session_state.pop(k, None)
+                st.rerun()
+
         st.markdown(
             """
-            <div style="margin-top: 1.5rem; font-size: 0.75rem; color: #CBD5E1; line-height: 1.45;">
+            <div style="margin-top: 1.3rem; font-size: 0.75rem; color: #CBD5E1; line-height: 1.45;">
               Compatible con Excel (.xlsx/.xls), CSV, Google Sheets y Power BI.<br>
-              Motor multi-línea y multi-período activado.
+              Motor gerencial multi-línea activado.
             </div>
             """,
             unsafe_allow_html=True,
@@ -1979,11 +2159,11 @@ def main():
               <span style="background:rgba(6,17,33,0.45); border:1px solid #00E5FF; color:#FFFFFF; padding:4px 12px; border-radius:999px; font-size:0.75rem; font-weight:800; letter-spacing:0.06em;">
                 PLATAFORMA EJECUTIVA DE CONSOLIDACIÓN &bull; HIVIMAR S.A.
               </span>
-              <h1 style="margin:0.45rem 0 0.25rem 0; font-size:2rem; font-weight:800; color:#FFFFFF;">
+              <h1 style="margin:0.45rem 0 0.25rem 0; font-size:1.95rem; font-weight:800; color:#FFFFFF;">
                 Bienvenido a STOCK<span style="color:#00E5FF;">&amp;</span><span style="color:#FF3B5C;">YA!</span>
               </h1>
-              <p style="margin:0; color:#F0F9FF; font-size:0.95rem;">
-                Consolida meses distintos, líneas de producto múltiples y sistemas ERP (SAP, Oracle, Odoo, Excel, Google Sheets) con gráficos ejecutivos y exportación lista para Power BI.
+              <p style="margin:0; color:#F0F9FF; font-size:0.93rem;">
+                Consolida sistemas (SAP, HIVIPRO, Oracle, Odoo, Excel, Google Sheets), audita diferencias y analiza valorización ABC para toma de decisiones gerenciales.
               </p>
             </div>
           </div>
@@ -1992,32 +2172,36 @@ def main():
         unsafe_allow_html=True,
     )
 
-    df_reconciled = st.session_state.get("df_reconciled", None)
-    name_a = st.session_state.get("name_a", "FUENTE_1")
-    name_b = st.session_state.get("name_b", "FUENTE_2")
-    sector_key = st.session_state.get("sector_key", "automotriz")
-    sector_label = st.session_state.get("sector_label", "Automotriz e Industrial (HIVIMAR)")
-
-    if nav_option == "Inicio y Carga Inteligente" or (df_reconciled is None and nav_option != "Consolidado 12 Meses + IA"):
+    # ==========================================================================
+    # MÓDULO UNIFICADO: CONSOLIDACIÓN INTELIGENTE (CARGA + RESULTADOS INMEDIATOS)
+    # ==========================================================================
+    if nav_option == "Consolidación Inteligente":
         render_section_header(
             "upload",
-            "Carga Universal de Fuentes (Meses, Líneas o Sistemas ERP)",
-            "Soporta archivos con distinta estructura, múltiples líneas de producto y cruce entre períodos (ej. Agosto vs Octubre).",
+            "Consolidación Inteligente — Carga y Cruce de Fuentes",
+            "Sube tus dos archivos (o selecciona dos pestañas de un mismo libro Excel) para consolidar y auditar al instante.",
         )
 
-        op_mode_label = st.radio(
-            "Objetivo del análisis:",
-            [
-                "Consolidación Multi-Línea / Comparativo de Meses (Suma + Variación)",
-                "Auditoría y Cuadre Exacto (Sistema Lógico vs Conteo Físico)",
-            ],
-            horizontal=True,
-            key="op_mode_radio",
-        )
-        operation_mode = "auditoria" if "Auditoría" in op_mode_label else "consolidacion"
+        c_mode1, c_mode2 = st.columns([2, 1.3])
+        with c_mode1:
+            op_mode_label = st.radio(
+                "Objetivo del análisis:",
+                [
+                    "Auditoría y Cuadre Exacto (Ej. SAP vs HIVIPRO / Lógico vs Físico)",
+                    "Consolidación Multi-Línea / Comparativo de Meses (Suma + Variación)",
+                ],
+                horizontal=True,
+                key="op_mode_radio",
+            )
+            operation_mode = "auditoria" if "Auditoría" in op_mode_label else "consolidacion"
+        with c_mode2:
+            same_book_mode = st.checkbox(
+                "Cruzar dos pestañas dentro de un mismo archivo Excel",
+                value=False,
+                key="same_book_chk",
+            )
 
         col_src1, col_src2 = st.columns(2)
-
         sheets_1 = {}
         sheets_2 = {}
         fname_1 = ""
@@ -2026,7 +2210,7 @@ def main():
         sel_sheet_2 = ""
 
         with col_src1:
-            render_source_badge_header("01", "Primera Fuente (Ej. Mes Anterior / Línea 1 / SAP)", is_second=False)
+            render_source_badge_header("01", "Primera Fuente (Ej. SAP / Mes Anterior / Línea 1)", is_second=False)
             mode_1 = st.radio(
                 "Origen Fuente 1:",
                 ["Subir Archivo (Excel / CSV)", "Enlace de Google Sheets"],
@@ -2035,7 +2219,7 @@ def main():
             )
             if mode_1 == "Subir Archivo (Excel / CSV)":
                 up1 = st.file_uploader(
-                    "Selecciona el primer archivo",
+                    "Selecciona el archivo de la Fuente 1",
                     type=["xlsx", "xls", "csv"],
                     key="up1",
                 )
@@ -2056,7 +2240,7 @@ def main():
 
             if sheets_1:
                 options_1 = list(sheets_1.keys())
-                if len(options_1) > 1:
+                if len(options_1) > 1 and not same_book_mode:
                     options_1 = ["CONSOLIDAR TODAS LAS PESTAÑAS"] + options_1
                 sel_sheet_1 = st.selectbox(
                     "Pestaña a analizar (Fuente 1):",
@@ -2064,62 +2248,73 @@ def main():
                     index=0,
                     key="sel_s1",
                 )
-                smart_lbl_1 = derive_smart_source_label(fname_1, sel_sheet_1, "FUENTE_1")
+                smart_lbl_1 = derive_smart_source_label(fname_1, sel_sheet_1, "SAP")
                 name_a = sanitize_label(
                     st.text_input("Etiqueta Fuente 1:", value=smart_lbl_1, key=f"lbl_a_{fname_1}_{sel_sheet_1}"),
                     "FUENTE_1",
                 )
 
         with col_src2:
-            render_source_badge_header("02", "Segunda Fuente (Ej. Mes Actual / Línea 2 / Conteo Físico)", is_second=True)
-            mode_2 = st.radio(
-                "Origen Fuente 2:",
-                ["Subir Archivo (Excel / CSV)", "Enlace de Google Sheets"],
-                horizontal=True,
-                key="mode_2",
-            )
-            if mode_2 == "Subir Archivo (Excel / CSV)":
-                up2 = st.file_uploader(
-                    "Selecciona el segundo archivo (o el mismo libro para cruzar pestañas)",
-                    type=["xlsx", "xls", "csv"],
-                    key="up2",
-                )
-                if up2:
-                    try:
-                        fname_2 = up2.name
-                        sheets_2 = read_uploaded_workbook(up2)
-                    except Exception as exc:
-                        st.error(f"Error al leer el archivo 2: {exc}")
-                elif sheets_1 and len(sheets_1) > 1:
+            render_source_badge_header("02", "Segunda Fuente (Ej. HIVIPRO / Mes Actual / Conteo Físico)", is_second=True)
+            if same_book_mode:
+                if sheets_1:
                     fname_2 = fname_1
                     sheets_2 = sheets_1
+                    st.info(f"Usando pestañas del libro cargado: **{fname_1}**")
+                else:
+                    st.warning("Sube primero el libro Excel en la columna izquierda (01).")
             else:
-                gs_url2 = st.text_input("Pega la URL de Google Sheets (Fuente 2):", key="gs2")
-                if gs_url2:
-                    try:
-                        fname_2 = "Google_Sheets_2"
-                        sheets_2 = load_google_sheet_from_url(gs_url2)
-                    except Exception as exc:
-                        st.error(f"Error al leer Google Sheets 2: {exc}")
+                mode_2 = st.radio(
+                    "Origen Fuente 2:",
+                    ["Subir Archivo (Excel / CSV)", "Enlace de Google Sheets"],
+                    horizontal=True,
+                    key="mode_2",
+                )
+                if mode_2 == "Subir Archivo (Excel / CSV)":
+                    up2 = st.file_uploader(
+                        "Selecciona el archivo de la Fuente 2",
+                        type=["xlsx", "xls", "csv"],
+                        key="up2",
+                    )
+                    if up2:
+                        try:
+                            fname_2 = up2.name
+                            sheets_2 = read_uploaded_workbook(up2)
+                        except Exception as exc:
+                            st.error(f"Error al leer el archivo 2: {exc}")
+                else:
+                    gs_url2 = st.text_input("Pega la URL de Google Sheets (Fuente 2):", key="gs2")
+                    if gs_url2:
+                        try:
+                            fname_2 = "Google_Sheets_2"
+                            sheets_2 = load_google_sheet_from_url(gs_url2)
+                        except Exception as exc:
+                            st.error(f"Error al leer Google Sheets 2: {exc}")
 
             if sheets_2:
                 options_2 = list(sheets_2.keys())
-                if len(options_2) > 1:
+                if len(options_2) > 1 and not same_book_mode:
                     options_2 = ["CONSOLIDAR TODAS LAS PESTAÑAS"] + options_2
-                default_idx_2 = 2 if (fname_1 == fname_2 and len(options_2) > 2) else (1 if (fname_1 == fname_2 and len(options_2) > 1) else 0)
+                default_idx_2 = 1 if (same_book_mode and len(options_2) > 1) else 0
                 sel_sheet_2 = st.selectbox(
                     "Pestaña a analizar (Fuente 2):",
                     options_2,
                     index=default_idx_2,
                     key="sel_s2",
                 )
-                smart_lbl_2 = derive_smart_source_label(fname_2, sel_sheet_2, "FUENTE_2")
+                smart_lbl_2 = derive_smart_source_label(fname_2, sel_sheet_2, "HIVIPRO")
                 if smart_lbl_2 == name_a:
                     smart_lbl_2 = f"{smart_lbl_2}_2"[:24]
                 name_b = sanitize_label(
                     st.text_input("Etiqueta Fuente 2:", value=smart_lbl_2, key=f"lbl_b_{fname_2}_{sel_sheet_2}"),
                     "FUENTE_2",
                 )
+
+        if sheets_1 and not sheets_2 and not same_book_mode:
+            st.warning(
+                "Fuente 1 cargada correctamente. Sube ahora el **segundo archivo** en el bloque **02** "
+                "(o marca la casilla superior si ambas pestañas están en el mismo libro Excel)."
+            )
 
         if sheets_1 and sheets_2:
             if name_a == name_b:
@@ -2138,101 +2333,85 @@ def main():
             )
 
             sig = f"{fname_1}_{sel_sheet_1}_{len(df_raw_1)}_{fname_2}_{sel_sheet_2}_{len(df_raw_2)}_{name_a}_{name_b}_{operation_mode}"
+            detected_filenames = list(dict.fromkeys([fname_1, sel_sheet_1, fname_2, sel_sheet_2]))
+            sector_key, sector_label = detect_industry_sector(
+                [df_raw_1, df_raw_2],
+                filenames=detected_filenames,
+            )
 
-            if sig != st.session_state.file_signature:
-                st.session_state.confirmed_load = False
-
-            if not st.session_state.confirmed_load:
-                st.markdown(
-                    f"""
-                    <div class="aguanta-box">
-                      <div style="flex-shrink:0;">{SVG_ICONS["alert"]}</div>
-                      <div>
-                        <div style="font-size:1.2rem; font-weight:800; color:#FF3B5C;">
-                          ¡AGUANTA! ¿Seguro que los archivos a consolidar son los correctos?
-                        </div>
-                        <div style="color:#F8FAFC; font-size:0.93rem; margin-top:0.25rem;">
-                          Vas a procesar <strong>{name_a}</strong> ({len(df_raw_1):,} registros) junto con <strong>{name_b}</strong> ({len(df_raw_2):,} registros).
-                        </div>
-                      </div>
-                    </div>
-                    """,
+            if st.session_state.get("last_animated_sig") != sig:
+                anim_placeholder = st.empty()
+                anim_placeholder.markdown(
+                    render_dynamic_loader_animation(
+                        sector_key,
+                        sector_label,
+                        analyzed_files=[fname_1, fname_2],
+                    ),
                     unsafe_allow_html=True,
                 )
-                c_yes, _ = st.columns([1, 2])
-                with c_yes:
-                    if st.button("¡SIMÓN! Confirmar y Procesar", type="primary", use_container_width=True):
-                        st.session_state.confirmed_load = True
-                        st.session_state.file_signature = sig
-                        st.rerun()
-            else:
-                detected_filenames = list(dict.fromkeys([fname_1, sel_sheet_1, fname_2, sel_sheet_2]))
-                sector_key, sector_label = detect_industry_sector(
-                    [df_raw_1, df_raw_2],
-                    filenames=detected_filenames,
-                )
+                time.sleep(1.1)
+                anim_placeholder.empty()
+                st.session_state.last_animated_sig = sig
 
-                if st.session_state.get("last_animated_sig") != sig:
-                    anim_placeholder = st.empty()
-                    anim_placeholder.markdown(
-                        render_dynamic_loader_animation(
-                            sector_key,
-                            sector_label,
-                            analyzed_files=[fname_1, fname_2],
-                        ),
-                        unsafe_allow_html=True,
-                    )
-                    time.sleep(1.4)
-                    anim_placeholder.empty()
-                    st.session_state.last_animated_sig = sig
+            schema_1 = auto_detect_schema(df_raw_1)
+            schema_2 = auto_detect_schema(df_raw_2)
 
-                schema_1 = auto_detect_schema(df_raw_1)
-                schema_2 = auto_detect_schema(df_raw_2)
+            with st.expander("Ajustar o verificar columnas detectadas automáticamente (opcional)"):
+                c_det1, c_det2 = st.columns(2)
+                cols_1_opts = ["(Ninguna)"] + [str(c) for c in df_raw_1.columns]
+                cols_2_opts = ["(Ninguna)"] + [str(c) for c in df_raw_2.columns]
+                with c_det1:
+                    st.markdown(f"**Columnas {name_a}:**")
+                    c1_cod = st.selectbox("Código / Material (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["codigo"]) if schema_1["codigo"] in cols_1_opts else 0, key="m1_cod")
+                    c1_desc = st.selectbox("Descripción (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["descripcion"]) if schema_1["descripcion"] in cols_1_opts else 0, key="m1_desc")
+                    c1_stk = st.selectbox("Stock / Cantidad (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["stock"]) if schema_1["stock"] in cols_1_opts else 0, key="m1_stk")
+                    c1_cat = st.selectbox("Línea / Categoría (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["categoria"]) if schema_1["categoria"] in cols_1_opts else 0, key="m1_cat")
+                    schema_1["codigo"] = None if c1_cod == "(Ninguna)" else c1_cod
+                    schema_1["descripcion"] = None if c1_desc == "(Ninguna)" else c1_desc
+                    schema_1["stock"] = None if c1_stk == "(Ninguna)" else c1_stk
+                    schema_1["categoria"] = None if c1_cat == "(Ninguna)" else c1_cat
+                with c_det2:
+                    st.markdown(f"**Columnas {name_b}:**")
+                    c2_cod = st.selectbox("Código / Material (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["codigo"]) if schema_2["codigo"] in cols_2_opts else 0, key="m2_cod")
+                    c2_desc = st.selectbox("Descripción (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["descripcion"]) if schema_2["descripcion"] in cols_2_opts else 0, key="m2_desc")
+                    c2_stk = st.selectbox("Stock / Cantidad (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["stock"]) if schema_2["stock"] in cols_2_opts else 0, key="m2_stk")
+                    c2_cat = st.selectbox("Línea / Categoría (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["categoria"]) if schema_2["categoria"] in cols_2_opts else 0, key="m2_cat")
+                    schema_2["codigo"] = None if c2_cod == "(Ninguna)" else c2_cod
+                    schema_2["descripcion"] = None if c2_desc == "(Ninguna)" else c2_desc
+                    schema_2["stock"] = None if c2_stk == "(Ninguna)" else c2_stk
+                    schema_2["categoria"] = None if c2_cat == "(Ninguna)" else c2_cat
 
-                with st.expander("Ajustar o verificar columnas detectadas automáticamente (opcional)"):
-                    c_det1, c_det2 = st.columns(2)
-                    cols_1_opts = ["(Ninguna)"] + [str(c) for c in df_raw_1.columns]
-                    cols_2_opts = ["(Ninguna)"] + [str(c) for c in df_raw_2.columns]
-                    with c_det1:
-                        st.markdown(f"**Columnas {name_a}:**")
-                        c1_cod = st.selectbox("Código / Material (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["codigo"]) if schema_1["codigo"] in cols_1_opts else 0, key="m1_cod")
-                        c1_desc = st.selectbox("Descripción (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["descripcion"]) if schema_1["descripcion"] in cols_1_opts else 0, key="m1_desc")
-                        c1_stk = st.selectbox("Stock / Cantidad (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["stock"]) if schema_1["stock"] in cols_1_opts else 0, key="m1_stk")
-                        c1_cat = st.selectbox("Línea / Categoría (F1):", cols_1_opts, index=cols_1_opts.index(schema_1["categoria"]) if schema_1["categoria"] in cols_1_opts else 0, key="m1_cat")
-                        schema_1["codigo"] = None if c1_cod == "(Ninguna)" else c1_cod
-                        schema_1["descripcion"] = None if c1_desc == "(Ninguna)" else c1_desc
-                        schema_1["stock"] = None if c1_stk == "(Ninguna)" else c1_stk
-                        schema_1["categoria"] = None if c1_cat == "(Ninguna)" else c1_cat
-                    with c_det2:
-                        st.markdown(f"**Columnas {name_b}:**")
-                        c2_cod = st.selectbox("Código / Material (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["codigo"]) if schema_2["codigo"] in cols_2_opts else 0, key="m2_cod")
-                        c2_desc = st.selectbox("Descripción (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["descripcion"]) if schema_2["descripcion"] in cols_2_opts else 0, key="m2_desc")
-                        c2_stk = st.selectbox("Stock / Cantidad (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["stock"]) if schema_2["stock"] in cols_2_opts else 0, key="m2_stk")
-                        c2_cat = st.selectbox("Línea / Categoría (F2):", cols_2_opts, index=cols_2_opts.index(schema_2["categoria"]) if schema_2["categoria"] in cols_2_opts else 0, key="m2_cat")
-                        schema_2["codigo"] = None if c2_cod == "(Ninguna)" else c2_cod
-                        schema_2["descripcion"] = None if c2_desc == "(Ninguna)" else c2_desc
-                        schema_2["stock"] = None if c2_stk == "(Ninguna)" else c2_stk
-                        schema_2["categoria"] = None if c2_cat == "(Ninguna)" else c2_cat
+            df_cons_1 = consolidate_source(df_raw_1, schema_1, name_a, default_line_tag=name_a)
+            df_cons_2 = consolidate_source(df_raw_2, schema_2, name_b, default_line_tag=name_b)
+            df_reconciled = reconcile_two_sources(
+                df_cons_1, df_cons_2, name_a, name_b, operation_mode=operation_mode
+            )
 
-                df_cons_1 = consolidate_source(df_raw_1, schema_1, name_a, default_line_tag=name_a)
-                df_cons_2 = consolidate_source(df_raw_2, schema_2, name_b, default_line_tag=name_b)
-                df_reconciled = reconcile_two_sources(
-                    df_cons_1, df_cons_2, name_a, name_b, operation_mode=operation_mode
-                )
+            st.session_state.df_reconciled = df_reconciled
+            st.session_state.name_a = name_a
+            st.session_state.name_b = name_b
+            st.session_state.sector_key = sector_key
+            st.session_state.sector_label = sector_label
 
-                st.session_state.df_reconciled = df_reconciled
-                st.session_state.name_a = name_a
-                st.session_state.name_b = name_b
-                st.session_state.sector_key = sector_key
-                st.session_state.sector_label = sector_label
+    # ==========================================================================
+    # RECUPERACIÓN GLOBAL DE ESTADO PARA TODAS LAS VISTAS
+    # ==========================================================================
+    df_reconciled = st.session_state.get("df_reconciled", None)
+    name_a = st.session_state.get("name_a", "FUENTE_1")
+    name_b = st.session_state.get("name_b", "FUENTE_2")
+    sector_label = st.session_state.get("sector_label", "Automotriz e Industrial (HIVIMAR)")
 
-                st.success(
-                    f"Consolidación completada con éxito. Rubro detectado: **{sector_label}**. "
-                    f"Se unificaron **{len(df_reconciled):,} materiales únicos** entre **{name_a}** y **{name_b}**."
-                )
+    if df_reconciled is None and nav_option not in ["Consolidación Inteligente", "Consolidado 12 Meses + IA"]:
+        st.warning(
+            "Aún no has cargado los archivos de inventario. Ve a **Consolidación Inteligente** "
+            "en el menú izquierdo para subir tus fuentes."
+        )
+        return
 
     df_top_sales = None
     df_no_move = None
+    df_abc = None
+    abc_metrics = None
 
     if df_reconciled is not None and not df_reconciled.empty:
         col_a = f"STOCK_{name_a}"
@@ -2268,6 +2447,12 @@ def main():
         if not df_no_move.empty and total_stock_b > 0:
             df_no_move["PESO_INVENTARIO_%"] = (df_no_move[col_b] / total_stock_b * 100.0).round(2)
 
+        ref_cost = st.session_state.get("ref_unit_cost", 15.0)
+        df_abc, abc_metrics = compute_managerial_abc_analysis(
+            df_reconciled, name_a, name_b, fallback_unit_cost=ref_cost
+        )
+        st.session_state.df_abc = df_abc
+
         total_skus = len(df_reconciled)
         cuadrados_cnt = int((df_reconciled["ESTADO_CUADRE"] == "Cuadrado").sum())
         descuadrados_cnt = total_skus - cuadrados_cnt
@@ -2278,11 +2463,13 @@ def main():
         sum_cons = float(df_reconciled["STOCK_CONSOLIDADO"].sum())
         var_inv_pct = ((sum_b - sum_a) / sum_a * 100.0) if sum_a > 0 else 0.0
 
-        c_info, c_exp1, c_exp2 = st.columns([2.4, 1.3, 1.1])
+        # Barra superior de exportación global
+        st.markdown("---")
+        c_info, c_exp1, c_exp2 = st.columns([2.3, 1.4, 1.1])
         with c_info:
-            st.caption(
-                f"**Consolidado Activo:** `{name_a}` + `{name_b}`  |  **Rubro:** {sector_label}  |  "
-                f"**Materiales Únicos:** {total_skus:,}"
+            st.markdown(
+                f"**Consolidado Activo:** `{name_a}` vs `{name_b}` &nbsp;|&nbsp; "
+                f"**Rubro:** {sector_label} &nbsp;|&nbsp; **Materiales Únicos:** {total_skus:,}"
             )
         with c_exp1:
             excel_bytes = build_master_excel_export(
@@ -2292,6 +2479,7 @@ def main():
                 df_top_sales=df_top_sales,
                 df_no_move=df_no_move,
                 df_ai=st.session_state.get("df_ai", None),
+                df_abc=df_abc,
                 sector_label=sector_label,
             )
             st.download_button(
@@ -2310,11 +2498,14 @@ def main():
                 use_container_width=True,
             )
 
-        if nav_option in ["Inicio y Carga Inteligente", "Consolidación y Cuadre"]:
+        # ----------------------------------------------------------------------
+        # VISTA 1: RESULTADOS DE CONSOLIDACIÓN INTELIGENTE
+        # ----------------------------------------------------------------------
+        if nav_option == "Consolidación Inteligente":
             render_section_header(
                 "audit",
-                "Consolidación Multi-Línea / Período y Auditoría Exacta",
-                "Suma consolidada, comparativo entre fuentes y detección de variaciones.",
+                "Resultados de Consolidación y Auditoría Exacta",
+                "Balance consolidado, porcentaje de exactitud y detalle por material.",
             )
 
             k1, k2, k3, k4 = st.columns(4)
@@ -2367,25 +2558,58 @@ def main():
 
             st.markdown("<br>", unsafe_allow_html=True)
 
-            fig_overview = go.Figure()
-            fig_overview.add_trace(
-                go.Bar(
-                    x=[name_a, name_b, "CONSOLIDADO TOTAL"],
-                    y=[sum_a, sum_b, sum_cons],
-                    text=[f"{sum_a:,.0f}", f"{sum_b:,.0f}", f"{sum_cons:,.0f}"],
-                    textposition="outside",
-                    textfont=dict(color="#FFFFFF"),
-                    marker_color=["#0057FF", "#00E5FF", "#FF3B5C"],
+            col_g1, col_g2 = st.columns(2)
+            with col_g1:
+                fig_overview = go.Figure()
+                fig_overview.add_trace(
+                    go.Bar(
+                        x=[name_a, name_b, "CONSOLIDADO TOTAL"],
+                        y=[sum_a, sum_b, sum_cons],
+                        text=[f"{sum_a:,.0f} uds", f"{sum_b:,.0f} uds", f"{sum_cons:,.0f} uds"],
+                        textposition="outside",
+                        textfont=dict(color="#FFFFFF"),
+                        marker_color=["#0057FF", "#00E5FF", "#FF3B5C"],
+                    )
                 )
-            )
-            apply_dark_plotly_layout(
-                fig_overview,
-                title=f"Balance General de Unidades: {name_a} vs {name_b} vs Consolidado",
-                height=350,
-                yaxis_title="Unidades",
-                showlegend=False,
-            )
-            st.plotly_chart(fig_overview, use_container_width=True)
+                apply_dark_plotly_layout(
+                    fig_overview,
+                    title=f"Balance General: {name_a} vs {name_b} vs Consolidado",
+                    height=370,
+                    yaxis_title="Unidades",
+                    showlegend=False,
+                )
+                st.plotly_chart(fig_overview, use_container_width=True)
+
+            with col_g2:
+                top10_prod = df_reconciled.sort_values("STOCK_CONSOLIDADO", ascending=False).head(10).copy()
+                top10_prod["LABEL"] = top10_prod["CODIGO"].astype(str) + " | " + top10_prod["DESCRIPCION"].str.slice(0, 24)
+                fig_top10 = go.Figure()
+                fig_top10.add_trace(
+                    go.Bar(
+                        y=top10_prod["LABEL"][::-1],
+                        x=top10_prod[col_a][::-1],
+                        name=name_a,
+                        orientation="h",
+                        marker_color="#0057FF",
+                    )
+                )
+                fig_top10.add_trace(
+                    go.Bar(
+                        y=top10_prod["LABEL"][::-1],
+                        x=top10_prod[col_b][::-1],
+                        name=name_b,
+                        orientation="h",
+                        marker_color="#00E5FF",
+                    )
+                )
+                fig_top10.update_layout(barmode="group")
+                apply_dark_plotly_layout(
+                    fig_top10,
+                    title=f"Top 10 Productos por Volumen ({name_a} vs {name_b})",
+                    height=370,
+                    xaxis_title="Unidades",
+                )
+                st.plotly_chart(fig_top10, use_container_width=True)
 
             f_col1, f_col2 = st.columns([1.5, 2])
             with f_col1:
@@ -2401,7 +2625,7 @@ def main():
                     ],
                 )
             with f_col2:
-                busqueda_sku = st.text_input("Buscar por Código, Descripción o Línea:", placeholder="Ej. 1001747, SKF, Automotriz...")
+                busqueda_sku = st.text_input("Buscar por Código, Descripción o Línea:", placeholder="Ej. 1001747, SKF, Sellado...")
 
             df_view = df_reconciled.copy()
             if filtro_estado == "Solo con Variación / Diferencia":
@@ -2429,6 +2653,175 @@ def main():
 
             st.dataframe(df_view, use_container_width=True, height=430)
 
+        # ----------------------------------------------------------------------
+        # VISTA 2: MATRIZ GERENCIAL ABC & SALUD DE INVENTARIO (NUEVO MÓDULO EJECUTIVO)
+        # ----------------------------------------------------------------------
+        if nav_option == "Matriz Gerencial ABC & Salud":
+            render_section_header(
+                "executive",
+                "Matriz Gerencial ABC (Pareto 80/15/5) e Índice de Salud de Inventario",
+                "Priorización financiera y operativa para toma de decisiones de Gerencia General y Supply Chain.",
+            )
+
+            if not abc_metrics["has_real_price"]:
+                c_p1, c_p2 = st.columns([1.4, 2.6])
+                with c_p1:
+                    new_cost = st.number_input(
+                        "Costo Unitario Promedio Referencial ($ USD):",
+                        min_value=0.1,
+                        max_value=50000.0,
+                        value=float(st.session_state.get("ref_unit_cost", 15.0)),
+                        step=1.0,
+                        key="ref_cost_input",
+                    )
+                    if new_cost != st.session_state.get("ref_unit_cost", 15.0):
+                        st.session_state.ref_unit_cost = new_cost
+                        st.rerun()
+                with c_p2:
+                    st.info(
+                        "Tus archivos actuales no incluyen columna de precio/costo unitario. "
+                        "Ajusta el **Costo Promedio Referencial ($ USD)** a la izquierda para simular la valorización financiera del inventario."
+                    )
+
+            m1, m2, m3, m4 = st.columns(4)
+            with m1:
+                st.markdown(
+                    f"""
+                    <div class="kpi-card cyan-top">
+                      <div class="kpi-label">Índice de Salud Gerencial</div>
+                      <div class="kpi-value">{abc_metrics['health_score']:.1f} / 100</div>
+                      <div class="kpi-sub badge-cyan">Exactitud + Control Clase A + Rotación</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            with m2:
+                st.markdown(
+                    f"""
+                    <div class="kpi-card">
+                      <div class="kpi-label">Valorización Consolidada</div>
+                      <div class="kpi-value">${abc_metrics['total_val_usd']:,.2f}</div>
+                      <div class="kpi-sub badge-ok">En {name_b}: ${abc_metrics['val_b_usd']:,.2f} USD</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            with m3:
+                st.markdown(
+                    f"""
+                    <div class="kpi-card">
+                      <div class="kpi-label">SKUs Clase A (80% del Valor)</div>
+                      <div class="kpi-value">{abc_metrics['class_a_skus']:,} SKUs</div>
+                      <div class="kpi-sub badge-ok">Representan ${abc_metrics['class_a_usd']:,.2f} USD</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            with m4:
+                st.markdown(
+                    f"""
+                    <div class="kpi-card red-top">
+                      <div class="kpi-label">Capital Clase A Sin Rotación</div>
+                      <div class="kpi-value">${abc_metrics['immobilized_a_usd']:,.2f}</div>
+                      <div class="kpi-sub badge-err">Impacto diferencias: ${abc_metrics['diff_val_usd']:,.2f}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+            st.markdown("<br>", unsafe_allow_html=True)
+
+            # Recomendaciones Ejecutivas Automáticas para Gerencia
+            st.markdown(
+                f"""
+                <div class="exec-advice-card">
+                  <strong style="color:#00E5FF;">DIAGNÓSTICO EJECUTIVO DE CONTROL:</strong>
+                  De los <strong>{total_skus:,}</strong> materiales analizados, solo <strong>{abc_metrics['class_a_skus']:,} SKUs (Clase A)</strong>
+                  concentran el <strong>80% del capital invertido (${abc_metrics['class_a_usd']:,.2f} USD)</strong>.
+                  Enfocar los conteos cíclicos semanales en estos {abc_metrics['class_a_skus']:,} códigos protege el 80% del patrimonio de inventario de HIVIMAR S.A.
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            col_abc1, col_abc2 = st.columns(2)
+            with col_abc1:
+                abc_summary = (
+                    df_abc.groupby("CLASE_ABC", as_index=False)
+                    .agg(SKUs=("CODIGO", "count"), Valor_USD=("VALOR_CONSOLIDADO_USD", "sum"))
+                )
+                fig_abc_pie = px.pie(
+                    abc_summary,
+                    names="CLASE_ABC",
+                    values="Valor_USD",
+                    hole=0.48,
+                    color="CLASE_ABC",
+                    color_discrete_map={
+                        "A (Crítico 80%)": "#0057FF",
+                        "B (Intermedio 15%)": "#00E5FF",
+                        "C (Cola 5%)": "#FF3B5C",
+                    },
+                )
+                fig_abc_pie.update_traces(textinfo="percent+label", textfont=dict(color="#FFFFFF"))
+                apply_dark_plotly_layout(
+                    fig_abc_pie,
+                    title="Distribución de Capital por Clasificación ABC ($ USD)",
+                    height=380,
+                )
+                st.plotly_chart(fig_abc_pie, use_container_width=True)
+
+            with col_abc2:
+                action_summary = (
+                    df_abc.groupby("ACCION_GERENCIAL", as_index=False)
+                    .agg(Cantidad_SKUs=("CODIGO", "count"), Valor_USD=("VALOR_CONSOLIDADO_USD", "sum"))
+                    .sort_values("Valor_USD", ascending=True)
+                )
+                fig_act = px.bar(
+                    action_summary,
+                    x="Valor_USD",
+                    y="ACCION_GERENCIAL",
+                    orientation="h",
+                    text="Cantidad_SKUs",
+                    color="ACCION_GERENCIAL",
+                    color_discrete_sequence=["#00E5FF", "#0057FF", "#FF3B5C", "#38BDF8"],
+                )
+                fig_act.update_traces(
+                    texttemplate="$%{x:,.0f} (%{text} SKUs)",
+                    textposition="outside",
+                    textfont=dict(color="#FFFFFF"),
+                )
+                apply_dark_plotly_layout(
+                    fig_act,
+                    title="Plan de Acción Gerencial por Monto Involucrado ($ USD)",
+                    height=380,
+                    xaxis_title="Monto ($ USD)",
+                    yaxis_title="",
+                    showlegend=False,
+                )
+                st.plotly_chart(fig_act, use_container_width=True)
+
+            st.dataframe(
+                df_abc[
+                    [
+                        "CODIGO",
+                        "DESCRIPCION",
+                        "LINEA_CATEGORIA",
+                        "CLASE_ABC",
+                        "STOCK_CONSOLIDADO",
+                        "COSTO_UNIT_USD",
+                        "VALOR_CONSOLIDADO_USD",
+                        "PARTICIPACION_VALOR_%",
+                        "ACUMULADO_PARETO_%",
+                        "ACCION_GERENCIAL",
+                    ]
+                ],
+                use_container_width=True,
+                height=400,
+            )
+
+        # ----------------------------------------------------------------------
+        # VISTA 3: TOP 20 VENTAS Y SIN MOVIMIENTO
+        # ----------------------------------------------------------------------
         if nav_option == "Top 20 Ventas y Sin Movimiento":
             render_section_header(
                 "ranking",
@@ -2439,10 +2832,11 @@ def main():
 
             with tab_top:
                 if df_top_sales is not None and not df_top_sales.empty:
+                    df_top_sales["ETIQUETA"] = df_top_sales["CODIGO"].astype(str) + " | " + df_top_sales["DESCRIPCION"].str.slice(0, 30)
                     fig_top = px.bar(
                         df_top_sales.sort_values("UNIDADES_MOVIDAS", ascending=True),
                         x="UNIDADES_MOVIDAS",
-                        y="DESCRIPCION",
+                        y="ETIQUETA",
                         orientation="h",
                         text="PARTICIPACION_%",
                         color="UNIDADES_MOVIDAS",
@@ -2468,7 +2862,30 @@ def main():
                         use_container_width=True,
                     )
                 else:
-                    st.info("No se registraron egresos/salidas mayores a cero entre los archivos seleccionados.")
+                    st.info(
+                        "No se detectaron salidas/egresos entre las fuentes seleccionadas (ambas fuentes tienen stock idéntico o sin columna de ventas). "
+                        "A continuación se muestra el **Top 20 de Mayor Volumen Consolidado**:"
+                    )
+                    top20_vol = df_reconciled.sort_values("STOCK_CONSOLIDADO", ascending=False).head(20).copy()
+                    top20_vol["ETIQUETA"] = top20_vol["CODIGO"].astype(str) + " | " + top20_vol["DESCRIPCION"].str.slice(0, 30)
+                    fig_v20 = px.bar(
+                        top20_vol.sort_values("STOCK_CONSOLIDADO", ascending=True),
+                        x="STOCK_CONSOLIDADO",
+                        y="ETIQUETA",
+                        orientation="h",
+                        text="STOCK_CONSOLIDADO",
+                        color_discrete_sequence=["#00E5FF"],
+                    )
+                    fig_v20.update_traces(texttemplate="%{x:,.0f} uds", textposition="outside", textfont=dict(color="#FFFFFF"))
+                    apply_dark_plotly_layout(
+                        fig_v20,
+                        title="Top 20 Productos por Volumen Consolidado",
+                        height=600,
+                        xaxis_title="Unidades Consolidadas",
+                        yaxis_title="",
+                        showlegend=False,
+                    )
+                    st.plotly_chart(fig_v20, use_container_width=True)
 
             with tab_dead:
                 if df_no_move is not None and not df_no_move.empty:
@@ -2476,12 +2893,13 @@ def main():
                     dead_pct = (total_dead_units / sum_b * 100.0) if sum_b > 0 else 0.0
                     st.warning(
                         f"El **{dead_pct:.2f}%** del inventario actual ({total_dead_units:,.0f} unidades) "
-                        f"no registró rotación en el período analizado."
+                        f"no registró egresos/variación en el período analizado."
                     )
+                    df_no_move["ETIQUETA"] = df_no_move["CODIGO"].astype(str) + " | " + df_no_move["DESCRIPCION"].str.slice(0, 30)
                     fig_dead = px.bar(
                         df_no_move.sort_values(col_b, ascending=True),
                         x=col_b,
-                        y="DESCRIPCION",
+                        y="ETIQUETA",
                         orientation="h",
                         text="PESO_INVENTARIO_%",
                         color=col_b,
@@ -2509,6 +2927,9 @@ def main():
                 else:
                     st.success("Todos los productos con stock registraron movimiento en el período.")
 
+        # ----------------------------------------------------------------------
+        # VISTA 4: CRECIENTE Y DECRECIENTE (% REAL)
+        # ----------------------------------------------------------------------
         if nav_option == "Creciente y Decreciente (% Real)":
             render_section_header(
                 "trends",
@@ -2604,6 +3025,7 @@ def main():
             df_pct_sku = df_reconciled[df_reconciled[col_a] > 0].copy()
             if not df_pct_sku.empty:
                 df_pct_sku["VAR_%"] = ((df_pct_sku[col_b] - df_pct_sku[col_a]) / df_pct_sku[col_a] * 100.0).round(2)
+                df_pct_sku["ETIQUETA"] = df_pct_sku["CODIGO"].astype(str) + " | " + df_pct_sku["DESCRIPCION"].str.slice(0, 28)
                 top_up = df_pct_sku.sort_values("VAR_%", ascending=False).head(10)
                 top_down = df_pct_sku.sort_values("VAR_%", ascending=True).head(10)
                 df_movers = pd.concat([top_up, top_down]).drop_duplicates("CODIGO")
@@ -2612,7 +3034,7 @@ def main():
                 fig_movers = px.bar(
                     df_movers.sort_values("VAR_%"),
                     x="VAR_%",
-                    y="DESCRIPCION",
+                    y="ETIQUETA",
                     orientation="h",
                     color="DIRECCION",
                     color_discrete_map={"Creciente (+)": "#00E5FF", "Decreciente (-)": "#FF3B5C"},
@@ -2628,6 +3050,9 @@ def main():
                 )
                 st.plotly_chart(fig_movers, use_container_width=True)
 
+    # ==========================================================================
+    # VISTA 5: CONSOLIDADO 12 MESES + IA PREDICTIVA
+    # ==========================================================================
     if nav_option == "Consolidado 12 Meses + IA":
         render_section_header(
             "ai",
@@ -2648,225 +3073,200 @@ def main():
 
         if uploaded_12:
             sig12 = "_".join(sorted(f.name for f in uploaded_12))
-            if sig12 != st.session_state.files12_signature:
-                st.session_state.confirmed_12m = False
+            sorted_files = sorted(
+                enumerate(uploaded_12[:12]),
+                key=lambda pair: extract_period_sort_key(pair[1].name, pair[0]),
+            )
 
-            if not st.session_state.confirmed_12m:
-                st.markdown(
-                    f"""
-                    <div class="aguanta-box">
-                      <div style="flex-shrink:0;">{SVG_ICONS["alert"]}</div>
-                      <div>
-                        <div style="font-size:1.2rem; font-weight:800; color:#FF3B5C;">
-                          ¡AGUANTA! ¿Seguro que los archivos mensuales son los correctos?
-                        </div>
-                        <div style="color:#F8FAFC; font-size:0.9rem; margin-top:0.25rem;">
-                          Has seleccionado <strong>{len(uploaded_12)} archivos mensuales</strong> para consolidación anual y proyección IA.
-                        </div>
-                      </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
-                )
-                if st.button("¡SIMÓN! Procesar Serie de 12 Meses", type="primary"):
-                    st.session_state.confirmed_12m = True
-                    st.session_state.files12_signature = sig12
-                    st.rerun()
+            monthly_records = []
+            sample_dfs = []
+            file_names_12 = []
+            skipped_files = []
+
+            for idx, f_obj in sorted_files:
+                _, _, period_lbl = extract_period_sort_key(f_obj.name, idx)
+                try:
+                    s_dict = read_uploaded_workbook(f_obj)
+                    if not s_dict:
+                        skipped_files.append(f_obj.name)
+                        continue
+                    raw_m = merge_all_workbook_sheets(s_dict) if len(s_dict) > 1 else next(iter(s_dict.values()))
+                    if raw_m is None or raw_m.empty:
+                        skipped_files.append(f_obj.name)
+                        continue
+                    file_names_12.append(f_obj.name)
+                    sample_dfs.append(raw_m)
+                    sch_m = auto_detect_schema(raw_m)
+                    cons_m = consolidate_source(raw_m, sch_m, "M")
+                    monthly_records.append({"label": period_lbl, "df": cons_m})
+                except Exception as exc:
+                    skipped_files.append(f"{f_obj.name} ({exc})")
+
+            if skipped_files:
+                st.warning(f"Archivos omitidos por estar vacíos o tener formato no legible: {', '.join(skipped_files)}")
+
+            if not monthly_records:
+                st.error("No se pudieron extraer datos válidos de los archivos mensuales cargados.")
             else:
-                sorted_files = sorted(
-                    enumerate(uploaded_12[:12]),
-                    key=lambda pair: extract_period_sort_key(pair[1].name, pair[0]),
-                )
+                sec_k12, sec_l12 = detect_industry_sector(sample_dfs, filenames=file_names_12)
+                if st.session_state.get("last_12m_anim") != sig12:
+                    ph12 = st.empty()
+                    ph12.markdown(
+                        render_dynamic_loader_animation(
+                            sec_k12,
+                            sec_l12,
+                            analyzed_files=file_names_12[:3],
+                        ),
+                        unsafe_allow_html=True,
+                    )
+                    time.sleep(1.1)
+                    ph12.empty()
+                    st.session_state.last_12m_anim = sig12
 
-                monthly_records = []
-                sample_dfs = []
-                file_names_12 = []
-                skipped_files = []
+                df_ai, piv_sales = run_ai_demand_forecast(monthly_records)
+                st.session_state.df_ai = df_ai
 
-                for idx, f_obj in sorted_files:
-                    _, _, period_lbl = extract_period_sort_key(f_obj.name, idx)
-                    try:
-                        s_dict = read_uploaded_workbook(f_obj)
-                        if not s_dict:
-                            skipped_files.append(f_obj.name)
-                            continue
-                        raw_m = merge_all_workbook_sheets(s_dict) if len(s_dict) > 1 else next(iter(s_dict.values()))
-                        if raw_m is None or raw_m.empty:
-                            skipped_files.append(f_obj.name)
-                            continue
-                        file_names_12.append(f_obj.name)
-                        sample_dfs.append(raw_m)
-                        sch_m = auto_detect_schema(raw_m)
-                        cons_m = consolidate_source(raw_m, sch_m, "M")
-                        monthly_records.append({"label": period_lbl, "df": cons_m})
-                    except Exception as exc:
-                        skipped_files.append(f"{f_obj.name} ({exc})")
-
-                if skipped_files:
-                    st.warning(f"Archivos omitidos por estar vacíos o tener formato no legible: {', '.join(skipped_files)}")
-
-                if not monthly_records:
-                    st.error("No se pudieron extraer datos válidos de los archivos mensuales cargados. Verifica sus columnas.")
+                if df_ai.empty:
+                    st.warning("No se encontraron registros consolidables en los archivos cargados.")
                 else:
-                    sec_k12, sec_l12 = detect_industry_sector(sample_dfs, filenames=file_names_12)
-                    if st.session_state.get("last_12m_anim") != sig12:
-                        ph12 = st.empty()
-                        ph12.markdown(
-                            render_dynamic_loader_animation(
-                                sec_k12,
-                                sec_l12,
-                                analyzed_files=file_names_12[:3],
-                            ),
+                    tot_forecast = float(df_ai["EXPECTATIVA_VENTA_IA"].sum())
+                    tot_suggested_buy = float(df_ai["SUGERIDO_COMPRA_IA"].sum())
+                    urgent_cnt = int(df_ai["DIAGNOSTICO_IA"].str.contains("Reabastecer").sum())
+                    accel_cnt = int(df_ai["DIAGNOSTICO_IA"].str.contains("Aceleración").sum())
+                    avg_conf = float(df_ai["CONFIANZA_IA_%"].mean())
+
+                    a1, a2, a3, a4 = st.columns(4)
+                    with a1:
+                        st.markdown(
+                            f"""
+                            <div class="kpi-card">
+                              <div class="kpi-label">Expectativa Venta Próximo Mes</div>
+                              <div class="kpi-value">{tot_forecast:,.0f} uds</div>
+                              <div class="kpi-sub badge-ok">Modelo IA ({len(monthly_records)} períodos)</div>
+                            </div>
+                            """,
                             unsafe_allow_html=True,
                         )
-                        time.sleep(1.3)
-                        ph12.empty()
-                        st.session_state.last_12m_anim = sig12
-
-                    df_ai, piv_sales = run_ai_demand_forecast(monthly_records)
-                    st.session_state.df_ai = df_ai
-
-                    if df_ai.empty:
-                        st.warning("No se encontraron registros consolidables en los archivos cargados.")
-                    else:
-                        tot_forecast = float(df_ai["EXPECTATIVA_VENTA_IA"].sum())
-                        tot_suggested_buy = float(df_ai["SUGERIDO_COMPRA_IA"].sum())
-                        urgent_cnt = int(df_ai["DIAGNOSTICO_IA"].str.contains("Reabastecer").sum())
-                        accel_cnt = int(df_ai["DIAGNOSTICO_IA"].str.contains("Aceleración").sum())
-                        avg_conf = float(df_ai["CONFIANZA_IA_%"].mean())
-
-                        a1, a2, a3, a4 = st.columns(4)
-                        with a1:
-                            st.markdown(
-                                f"""
-                                <div class="kpi-card">
-                                  <div class="kpi-label">Expectativa Venta Próximo Mes</div>
-                                  <div class="kpi-value">{tot_forecast:,.0f} uds</div>
-                                  <div class="kpi-sub badge-ok">Modelo IA ({len(monthly_records)} períodos)</div>
-                                </div>
-                                """,
-                                unsafe_allow_html=True,
-                            )
-                        with a2:
-                            st.markdown(
-                                f"""
-                                <div class="kpi-card red-top">
-                                  <div class="kpi-label">Alertas Quiebre de Stock</div>
-                                  <div class="kpi-value">{urgent_cnt:,} SKUs</div>
-                                  <div class="kpi-sub badge-err">Stock menor a demanda IA</div>
-                                </div>
-                                """,
-                                unsafe_allow_html=True,
-                            )
-                        with a3:
-                            st.markdown(
-                                f"""
-                                <div class="kpi-card cyan-top">
-                                  <div class="kpi-label">Sugerido de Compra IA</div>
-                                  <div class="kpi-value">{tot_suggested_buy:,.0f} uds</div>
-                                  <div class="kpi-sub badge-cyan">{accel_cnt:,} SKUs en aceleración (+10%)</div>
-                                </div>
-                                """,
-                                unsafe_allow_html=True,
-                            )
-                        with a4:
-                            st.markdown(
-                                f"""
-                                <div class="kpi-card">
-                                  <div class="kpi-label">Precisión / Confianza Promedio IA</div>
-                                  <div class="kpi-value">{avg_conf:.1f}%</div>
-                                  <div class="kpi-sub badge-ok">Holt + Regresión Ponderada</div>
-                                </div>
-                                """,
-                                unsafe_allow_html=True,
-                            )
-
-                        st.markdown("<br>", unsafe_allow_html=True)
-
-                        monthly_totals = piv_sales.sum(axis=0)
-                        hist_x = list(monthly_totals.index)
-                        hist_y = list(monthly_totals.values)
-
-                        if len(hist_x) > 0:
-                            fig_ai = go.Figure()
-                            fig_ai.add_trace(
-                                go.Scatter(
-                                    x=hist_x,
-                                    y=hist_y,
-                                    mode="lines+markers+text",
-                                    name="Histórico Real",
-                                    text=[f"{v:,.0f}" for v in hist_y],
-                                    textposition="top center",
-                                    textfont=dict(color="#FFFFFF"),
-                                    line=dict(color="#00E5FF", width=3.5),
-                                    marker=dict(size=9, color="#0057FF", line=dict(width=2, color="#00E5FF")),
-                                )
-                            )
-                            fig_ai.add_trace(
-                                go.Scatter(
-                                    x=[hist_x[-1], "Próximo Mes (IA)"],
-                                    y=[hist_y[-1], tot_forecast],
-                                    mode="lines+markers+text",
-                                    name="Proyección IA",
-                                    text=["", f"{tot_forecast:,.0f} uds"],
-                                    textposition="top center",
-                                    textfont=dict(color="#FF5C77"),
-                                    line=dict(color="#FF3B5C", width=3.5, dash="dash"),
-                                    marker=dict(size=12, color="#FF3B5C", symbol="diamond"),
-                                )
-                            )
-                            apply_dark_plotly_layout(
-                                fig_ai,
-                                title="Curva Histórica Consolidada y Expectativa de Venta Próximo Mes (IA)",
-                                height=400,
-                                yaxis_title="Unidades",
-                            )
-                            st.plotly_chart(fig_ai, use_container_width=True)
-
-                        render_section_header(
-                            "table",
-                            "Tabla de Expectativa de Venta y Recomendación de Compra por Producto",
-                            "Filtra por diagnóstico IA para priorizar órdenes de reposición.",
+                    with a2:
+                        st.markdown(
+                            f"""
+                            <div class="kpi-card red-top">
+                              <div class="kpi-label">Alertas Quiebre de Stock</div>
+                              <div class="kpi-value">{urgent_cnt:,} SKUs</div>
+                              <div class="kpi-sub badge-err">Stock menor a demanda IA</div>
+                            </div>
+                            """,
+                            unsafe_allow_html=True,
+                        )
+                    with a3:
+                        st.markdown(
+                            f"""
+                            <div class="kpi-card cyan-top">
+                              <div class="kpi-label">Sugerido de Compra IA</div>
+                              <div class="kpi-value">{tot_suggested_buy:,.0f} uds</div>
+                              <div class="kpi-sub badge-cyan">{accel_cnt:,} SKUs en aceleración (+10%)</div>
+                            </div>
+                            """,
+                            unsafe_allow_html=True,
+                        )
+                    with a4:
+                        st.markdown(
+                            f"""
+                            <div class="kpi-card">
+                              <div class="kpi-label">Precisión / Confianza Promedio IA</div>
+                              <div class="kpi-value">{avg_conf:.1f}%</div>
+                              <div class="kpi-sub badge-ok">Holt + Regresión Ponderada</div>
+                            </div>
+                            """,
+                            unsafe_allow_html=True,
                         )
 
-                        col_f_ai1, col_f_ai2 = st.columns([1.4, 2])
-                        with col_f_ai1:
-                            filtro_ai = st.selectbox(
-                                "Filtrar diagnóstico IA:",
-                                [
-                                    "Todos los productos",
-                                    "Solo [CRÍTICO] Reabastecer Urgente",
-                                    "Solo [ALZA] Demanda en Aceleración",
-                                    "Solo [INMOVILIZADO] Sin Rotación",
-                                    "Solo [BAJA] Demanda en Desaceleración",
-                                ],
+                    st.markdown("<br>", unsafe_allow_html=True)
+
+                    monthly_totals = piv_sales.sum(axis=0)
+                    hist_x = list(monthly_totals.index)
+                    hist_y = list(monthly_totals.values)
+
+                    if len(hist_x) > 0:
+                        fig_ai = go.Figure()
+                        fig_ai.add_trace(
+                            go.Scatter(
+                                x=hist_x,
+                                y=hist_y,
+                                mode="lines+markers+text",
+                                name="Histórico Real",
+                                text=[f"{v:,.0f}" for v in hist_y],
+                                textposition="top center",
+                                textfont=dict(color="#FFFFFF"),
+                                line=dict(color="#00E5FF", width=3.5),
+                                marker=dict(size=9, color="#0057FF", line=dict(width=2, color="#00E5FF")),
                             )
-                        with col_f_ai2:
-                            busqueda_ai = st.text_input("Buscar SKU o descripción en proyección IA:", placeholder="Ej. 1001747, Rodamiento...")
+                        )
+                        fig_ai.add_trace(
+                            go.Scatter(
+                                x=[hist_x[-1], "Próximo Mes (IA)"],
+                                y=[hist_y[-1], tot_forecast],
+                                mode="lines+markers+text",
+                                name="Proyección IA",
+                                text=["", f"{tot_forecast:,.0f} uds"],
+                                textposition="top center",
+                                textfont=dict(color="#FF5C77"),
+                                line=dict(color="#FF3B5C", width=3.5, dash="dash"),
+                                marker=dict(size=12, color="#FF3B5C", symbol="diamond"),
+                            )
+                        )
+                        apply_dark_plotly_layout(
+                            fig_ai,
+                            title="Curva Histórica Consolidada y Expectativa de Venta Próximo Mes (IA)",
+                            height=400,
+                            yaxis_title="Unidades",
+                        )
+                        st.plotly_chart(fig_ai, use_container_width=True)
 
-                        df_ai_view = df_ai.copy()
-                        if filtro_ai == "Solo [CRÍTICO] Reabastecer Urgente":
-                            df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("CRÍTICO")]
-                        elif filtro_ai == "Solo [ALZA] Demanda en Aceleración":
-                            df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("ALZA")]
-                        elif filtro_ai == "Solo [INMOVILIZADO] Sin Rotación":
-                            df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("INMOVILIZADO")]
-                        elif filtro_ai == "Solo [BAJA] Demanda en Desaceleración":
-                            df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("BAJA")]
+                    render_section_header(
+                        "table",
+                        "Tabla de Expectativa de Venta y Recomendación de Compra por Producto",
+                        "Filtra por diagnóstico IA para priorizar órdenes de reposición.",
+                    )
 
-                        if busqueda_ai.strip():
-                            q_ai = busqueda_ai.strip().lower()
-                            df_ai_view = df_ai_view[
-                                df_ai_view["CODIGO"].str.lower().str.contains(q_ai, na=False)
-                                | df_ai_view["DESCRIPCION"].str.lower().str.contains(q_ai, na=False)
-                            ]
+                    col_f_ai1, col_f_ai2 = st.columns([1.4, 2])
+                    with col_f_ai1:
+                        filtro_ai = st.selectbox(
+                            "Filtrar diagnóstico IA:",
+                            [
+                                "Todos los productos",
+                                "Solo [CRÍTICO] Reabastecer Urgente",
+                                "Solo [ALZA] Demanda en Aceleración",
+                                "Solo [INMOVILIZADO] Sin Rotación",
+                                "Solo [BAJA] Demanda en Desaceleración",
+                            ],
+                        )
+                    with col_f_ai2:
+                        busqueda_ai = st.text_input("Buscar SKU o descripción en proyección IA:", placeholder="Ej. 1001747, Rodamiento...")
 
-                        st.dataframe(df_ai_view, use_container_width=True, height=420)
+                    df_ai_view = df_ai.copy()
+                    if filtro_ai == "Solo [CRÍTICO] Reabastecer Urgente":
+                        df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("CRÍTICO")]
+                    elif filtro_ai == "Solo [ALZA] Demanda en Aceleración":
+                        df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("ALZA")]
+                    elif filtro_ai == "Solo [INMOVILIZADO] Sin Rotación":
+                        df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("INMOVILIZADO")]
+                    elif filtro_ai == "Solo [BAJA] Demanda en Desaceleración":
+                        df_ai_view = df_ai_view[df_ai_view["DIAGNOSTICO_IA"].str.contains("BAJA")]
+
+                    if busqueda_ai.strip():
+                        q_ai = busqueda_ai.strip().lower()
+                        df_ai_view = df_ai_view[
+                            df_ai_view["CODIGO"].str.lower().str.contains(q_ai, na=False)
+                            | df_ai_view["DESCRIPCION"].str.lower().str.contains(q_ai, na=False)
+                        ]
+
+                    st.dataframe(df_ai_view, use_container_width=True, height=420)
 
     st.markdown(
         """
         <div class="copyright-footer">
-          STOCK&amp;YA! &bull; Plataforma de Inteligencia de Inventarios para HIVIMAR S.A. &nbsp;|&nbsp;
+          STOCK&amp;YA! &bull; Plataforma de Inteligencia Gerencial de Inventarios para HIVIMAR S.A. &nbsp;|&nbsp;
           Derechos de autor reservados por John Aarón Domínguez Jara 01.593.321
         </div>
         """,
